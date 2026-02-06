@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Nostri Servizi - Sgomberi e Trasporti</title>
+    <!-- File CSS globale -->
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+      (function(){
+        try{
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if(meta) meta.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
+        }catch(e){}
+      })();
+    </script>
+
+    <style>
+        /* --- STILE APPLE / SF PRO (Coerente con Chi Siamo) --- */
+        
+        :root {
+            --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            --section-spacing: 100px;
+            --card-radius: 24px;
+        }
+
+        body {
+            font-family: var(--font-apple);
+            letter-spacing: -0.015em;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-apple);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            font-family: var(--font-apple);
+            font-weight: 400;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        /* Hero Apple Style */
+        .apple-hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(176,141,87,0.08) 0%, transparent 70%);
+        }
+
+        .apple-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .apple-hero h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.05;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-color) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .apple-hero p {
+            font-size: 1.35rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Griglia Servizi con Immagini */
+        .services-grid-apple {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card-apple {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card-apple:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: transparent;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: var(--muted);
+            position: relative;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .service-card-apple:hover .card-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .card-content p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Step Process */
+        .process-section {
+            padding: var(--section-spacing) 0;
+            background: var(--card-bg); /* Sfondo leggermente diverso */
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .step-circle {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 24px;
+            box-shadow: 0 10px 20px rgba(176,141,87,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .process-steps { grid-template-columns: 1fr; }
+            .services-grid-apple { grid-template-columns: 1fr; }
+        }
+
+        /* Testimonials Apple Style */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-apple {
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* FAQ Minimal */
+        .faq-minimal h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder per Header -->
+    <div id="main-header" class="header-placeholder" aria-hidden="true"></div>
+
+    <main class="content" id="main-content">
+        
+        <!-- Hero Section -->
+        <section class="apple-hero">
+            <div class="container">
+                <span class="apple-eyebrow">I Nostri Servizi</span>
+                <h1>Soluzioni per ogni<br>spazio.</h1>
+                <p>Liberiamo cantine, appartamenti e capannoni. Dallo sgombero al recupero del valore, gestiamo tutto noi con rapidità e cura.</p>
+                <div style="margin-top: 30px;">
+                    <a href="https://wa.me/393497500613" class="whatsapp-button">
+                        <span style="margin-right:8px">💬</span> Scrivici su WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Griglia Servizi -->
+        <section class="section">
+            <div class="container">
+                <div class="services-grid-apple" aria-label="Elenco servizi">
+                    
+                    <!-- Card 1 -->
+                    <div class="service-card-apple">
+                        <div class="card-image-wrapper">
+                            <!-- Immagine Finta Gratis da placehold.co -->
+                            <img src="https://placehold.co/800x600/e0e0e0/333333?text=Sgomberi+Gratuiti" alt="Sgombero stanza vuota">
+                        </div>
+                        <div class="card-content">
+                            <h3>Sgomberi Gratuiti</h3>
+                            <p>Sgombero completo di cantine, solai e appartamenti a costo zero quando il valore della merce recuperabile copre il costo del servizio. Smaltimento ecologico incluso.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="service-card-apple">
+                        <div class="card-image-wrapper">
+                            <img src="https://placehold.co/800x600/e0e0e0/333333?text=Trasporti+Veloci" alt="Furgone per traslochi">
+                        </div>
+                        <div class="card-content">
+                            <h3>Trasporti Occasionali</h3>
+                            <p>Hai bisogno di spostare un divano o una lavatrice? Offriamo un servizio flessibile per piccoli traslochi, ritiro merci e consegne urgenti con mezzi attrezzati.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="service-card-apple">
+                        <div class="card-image-wrapper">
+                            <img src="https://placehold.co/800x600/e0e0e0/333333?text=Acquisto+Mobili" alt="Mobili antichi restaurati">
+                        </div>
+                        <div class="card-content">
+                            <h3>Acquisto Mobili</h3>
+                            <p>Trasforma i tuoi vecchi arredi in contanti. Valutiamo e acquistiamo mobili usati di qualità, antiquariato e modernariato. Pagamento immediato al ritiro.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="service-card-apple">
+                        <div class="card-image-wrapper">
+                            <img src="https://placehold.co/800x600/e0e0e0/333333?text=Locali+Commerciali" alt="Capannone industriale">
+                        </div>
+                        <div class="card-content">
+                            <h3>Sgombero Capannoni</h3>
+                            <p>Interventi massivi per aziende, magazzini e locali commerciali. Disponiamo di mezzi pesanti e personale per gestire grandi volumi in tempi ristretti.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="service-card-apple">
+                        <div class="card-image-wrapper">
+                            <img src="https://placehold.co/800x600/e0e0e0/333333?text=Smaltimento+Eco" alt="Simbolo riciclo">
+                        </div>
+                        <div class="card-content">
+                            <h3>Smaltimento e Riciclo</h3>
+                            <p>Non tutto va in discarica. Selezioniamo meticolosamente i materiali per il riciclo (legno, ferro, plastica) e doniamo ciò che può avere una seconda vita.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="service-card-apple">
+                        <div class="card-image-wrapper">
+                            <img src="https://placehold.co/800x600/e0e0e0/333333?text=Servizi+Su+Misura" alt="Stretta di mano">
+                        </div>
+                        <div class="card-content">
+                            <h3>Servizi Personalizzati</h3>
+                            <p>Ogni situazione è unica. Offriamo sopralluoghi gratuiti per valutare le tue esigenze specifiche e fornirti un preventivo chiaro e senza sorprese.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Come Funziona (Processo) -->
+        <section class="process-section">
+            <div class="container">
+                <div style="text-align: center;">
+                    <span class="apple-eyebrow">Il Metodo</span>
+                    <h2>Come lavoriamo.</h2>
+                </div>
+                <div class="process-steps">
+                    <div>
+                        <div class="step-circle">1</div>
+                        <h3>Contatto</h3>
+                        <p>Inviaci foto e descrizione via WhatsApp o chiamaci. È il modo più veloce per una prima stima.</p>
+                    </div>
+                    <div>
+                        <div class="step-circle">2</div>
+                        <h3>Valutazione</h3>
+                        <p>Ricevi un preventivo rapido. Se necessario, effettuiamo un sopralluogo gratuito in loco.</p>
+                    </div>
+                    <div>
+                        <div class="step-circle">3</div>
+                        <h3>Intervento</h3>
+                        <p>Fissiamo la data. Arriviamo puntuali, svuotiamo tutto e lasciamo i locali puliti.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonianze -->
+        <section class="section">
+            <div class="container">
+                <h2 style="text-align:center;">Dicono di noi</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-apple">
+                        <span class="quote-icon">“</span>
+                        <p>"Servizio veloce e professionale, hanno liberato la cantina in poche ore lasciando tutto pulito. Prezzo onestissimo."</p>
+                        <p style="margin-top:20px; font-weight:600; color:var(--text-color)">— Maria, Catania</p>
+                    </div>
+                    <div class="testimonial-apple">
+                        <span class="quote-icon">“</span>
+                        <p>"Ottima comunicazione. Hanno ritirato i mobili della nonna pagandomi subito in contanti. Consigliatissimi."</p>
+                        <p style="margin-top:20px; font-weight:600; color:var(--text-color)">— Paolo, Gravina</p>
+                    </div>
+                    <div class="testimonial-apple">
+                        <span class="quote-icon">“</span>
+                        <p>"Dovevo sgomberare un ufficio in centro. Hanno gestito permessi e logistica in modo impeccabile."</p>
+                        <p style="margin-top:20px; font-weight:600; color:var(--text-color)">— Giuseppe, Catania</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Semplici -->
+        <section class="section" style="padding-bottom: 120px;">
+            <div class="container faq-minimal" style="max-width: 800px;">
+                <h2 style="text-align:center; margin-bottom:40px;">Domande Frequenti</h2>
+                
+                <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+                    <h4>Arrivate in giornata?</h4>
+                    <p>Dipende dalla disponibilità e dalla distanza; spesso riusciamo a programmare ritiri rapidi entro 24/48 ore dalla chiamata.</p>
+                </div>
+
+                <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+                    <h4>Posso vendere singoli mobili?</h4>
+                    <p>Sì, valutiamo anche singoli pezzi purché abbiano mercato. Invia le foto su WhatsApp per una valutazione preliminare immediata.</p>
+                </div>
+
+                <div style="padding-bottom: 20px;">
+                    <h4>Quanto costa lo sgombero?</h4>
+                    <p>Il prezzo varia in base al volume e al piano. Se ci sono oggetti rivendibili, il loro valore viene scalato dal prezzo, rendendo il servizio spesso molto economico o gratuito.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer e Widget -->
+    <div id="main-footer"></div>
+    <div id="whatsapp-widget"></div>
+
+    <script src="script.js" defer></script>
+    
+    <!-- Animazioni Scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.service-card-apple, .process-steps > div, .testimonial-apple').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

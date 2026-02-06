@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acquisto Mobili Usati Catania - Valutazione Immediata</title>
+    <!-- File CSS globale per variabili e basi -->
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+      /* Gestione immediata del tema per evitare flash di luce */
+      (function(){
+        try{
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if(meta) meta.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
+        }catch(e){}
+      })();
+    </script>
+
+    <style>
+        /* --- STILI INDIPENDENTI PER QUESTA PAGINA --- */
+        
+        /* Font secondario elegante per titoli */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+        :root {
+            --antique-gold: #b08d57;
+            --antique-dark: #8e6f42;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        /* Hero Sub specifica */
+        .hero-sub {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, rgba(176,141,87,0.1) 0%, rgba(0,0,0,0) 100%);
+            text-align: center;
+        }
+
+        .hero-sub h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .hero-sub p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-muted);
+        }
+
+        /* Griglia Categorie - Design Accurato */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--antique-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--antique-gold);
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        .category-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        /* Sezione Come Funziona */
+        .steps-container {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 50px;
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--antique-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 15px rgba(176,141,87,0.3);
+        }
+
+        /* Zone Operative */
+        .zones-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .zone-pill {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .zone-pill:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        /* FAQ Accordion */
+        .faq-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 20px 25px;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: background 0.3s ease;
+        }
+
+        .faq-trigger:hover {
+            background: rgba(176,141,87,0.05);
+        }
+
+        .faq-content {
+            max-height: 0;
+            padding: 0 25px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .faq-box.active .faq-content {
+            max-height: 300px;
+            padding-bottom: 25px;
+        }
+
+        .faq-icon {
+            font-size: 1.4rem;
+            color: var(--antique-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-box.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Testimonials accurati */
+        .testimonial-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .testimonial-item::after {
+            content: '"';
+            position: absolute;
+            top: 10px; right: 20px;
+            font-size: 4rem;
+            font-family: var(--font-serif);
+            color: var(--antique-gold);
+            opacity: 0.2;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--antique-gold);
+        }
+
+        /* Pulsanti coordinati */
+        .btn-gold {
+            background: var(--antique-gold);
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(176,141,87,0.2);
+        }
+
+        .btn-gold:hover {
+            background: var(--antique-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(176,141,87,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .steps-container { padding: 30px 20px; }
+            .hero-sub h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder per Header (caricato da script.js) -->
+    <div id="main-header" class="header-placeholder" aria-hidden="true"></div>
+
+    <main class="content" id="main-content">
+        
+        <!-- Hero Section -->
+        <section class="hero-sub">
+            <div class="container">
+                <span style="color:var(--antique-gold); font-weight:700; text-transform:uppercase; letter-spacing:2px; font-size:0.9rem;">Servizio Professionale</span>
+                <h1>Acquisto Mobili Usati</h1>
+                <p>Valutazione immediata e ritiro gratuito a Catania. Trasformiamo i tuoi arredi in contanti in sole 24 ore.</p>
+                <div style="margin-top: 35px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/393497500613" class="btn-gold">
+                        Invia Foto su WhatsApp
+                    </a>
+                    <a href="tel:3497500613" class="whatsapp-button" style="background:var(--secondary-color);">
+                        Chiama 349 750 0613
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intro -->
+        <section class="section">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 class="font-serif" style="font-size: 2.2rem; margin-bottom: 20px;">Il valore del design e della storia</h2>
+                    <p style="font-size: 1.15rem; color: var(--text-muted);">Non buttare via il passato. Siamo specializzati nel riconoscere il valore di pezzi unici, offrendoti una valutazione onesta e immediata per antiquariato, modernariato e arredamento d'epoca.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cosa Acquistiamo Grid -->
+        <section class="section" id="categorie">
+            <div class="container">
+                <h2 class="section-title">Cosa Acquistiamo</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <span class="category-icon">🪑</span>
+                        <h3>Mobili Antichi</h3>
+                        <p>Comò, credenze, tavoli e armadi dell'800 e primi del '900.</p>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🛋️</span>
+                        <h3>Salotti & Design</h3>
+                        <p>Divani Chesterfield, poltrone in pelle e icone del design.</p>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">📻</span>
+                        <h3>Modernariato</h3>
+                        <p>Arredi e complementi degli anni '50, '60 e '70.</p>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">💡</span>
+                        <h3>Illuminazione</h3>
+                        <p>Lampadari in vetro di Murano, Venini e lampade vintage.</p>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🎨</span>
+                        <h3>Arte & Dipinti</h3>
+                        <p>Quadri antichi, oli su tela, stampe d'epoca e cornici.</p>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🏺</span>
+                        <h3>Oggettistica</h3>
+                        <p>Porcellane, bronzi, argenteria e oggetti da collezione.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Processo di Vendita -->
+        <section class="section" id="funziona">
+            <div class="container">
+                <div class="steps-container">
+                    <h2 class="section-title" style="margin-bottom: 50px;">Come Funziona</h2>
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h3 class="font-serif">Invia le Foto</h3>
+                            <p>Scatta qualche foto agli oggetti che vuoi vendere e inviale via WhatsApp.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h3 class="font-serif">Ricevi l'Offerta</h3>
+                            <p>Analizziamo le foto e ti forniamo una valutazione preliminare gratuita.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h3 class="font-serif">Ritiro e Cash</h3>
+                            <p>Fissiamo il ritiro con i nostri mezzi e paghiamo subito in contanti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zone Operative -->
+        <section class="section" id="zone">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title">Dove Operiamo</h2>
+                <p>Copriamo capillarmente tutta la provincia di Catania:</p>
+                <div class="zones-grid">
+                    <span class="zone-pill">Catania Centro</span>
+                    <span class="zone-pill">Acireale</span>
+                    <span class="zone-pill">Misterbianco</span>
+                    <span class="zone-pill">Paternò</span>
+                    <span class="zone-pill">Gravina di Catania</span>
+                    <span class="zone-pill">Trecastagni</span>
+                    <span class="zone-pill">Giarre</span>
+                    <span class="zone-pill">Mascalucia</span>
+                    <span class="zone-pill">Belpasso</span>
+                    <span class="zone-pill">Bronte</span>
+                    <span class="zone-pill">Aci Castello</span>
+                    <span class="zone-pill">Zafferana Etnea</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Domande Frequenti</h2>
+                <div class="faq-wrapper">
+                    <div class="faq-box">
+                        <button class="faq-trigger">
+                            Pagate subito al momento del ritiro?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Assolutamente sì. Il pagamento viene effettuato contestualmente al ritiro dei mobili, prima ancora di iniziare le operazioni di carico, per garantirti la massima trasparenza.</p>
+                        </div>
+                    </div>
+                    <div class="faq-box">
+                        <button class="faq-trigger">
+                            Il trasporto ha un costo aggiuntivo?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>No, il trasporto e il personale necessario per il carico sono completamente a nostro carico. Il prezzo che concordiamo è il netto che riceverai.</p>
+                        </div>
+                    </div>
+                    <div class="faq-box">
+                        <button class="faq-trigger">
+                            Cosa succede se i mobili sono da smaltire?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Se durante la valutazione emerge che gli oggetti non hanno valore commerciale, possiamo fornirti un preventivo agevolato per lo sgombero e lo smaltimento certificato.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Esperienze dei Clienti</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-item">
+                        <p>"Hanno svuotato l'appartamento dei miei nonni acquistando i mobili antichi che erano in ottime condizioni. Molto onesti nella valutazione."</p>
+                        <div class="testimonial-author">
+                            <span style="font-size:1.5rem">👤</span> Maria Grazia L.
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"Professionali e puntuali. Avevo un divano di design da vendere e hanno gestito tutto in meno di 48 ore. Consigliatissimi."</p>
+                        <div class="testimonial-author">
+                            <span style="font-size:1.5rem">👤</span> Pietro S.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Finale -->
+        <section class="section" style="background: var(--card-bg); border-radius: 40px 40px 0 0; margin-top: 60px;">
+            <div class="container" style="text-align: center; padding: 60px 0;">
+                <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 20px;">Pronto a liberare spazio?</h2>
+                <p style="margin-bottom: 40px; font-size: 1.2rem;">Non lasciar prendere polvere ai tuoi mobili. Trasformali in valore oggi stesso.</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/393497500613" class="btn-gold" style="font-size: 1.2rem;">
+                        Contattaci ora su WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Placeholders Dinamici (caricati da script.js) -->
+    <div id="main-footer"></div>
+    <div id="whatsapp-widget"></div>
+
+    <!-- Script Globale per caricamento Header/Footer -->
+    <script src="script.js" defer></script>
+
+    <!-- Script Indipendente per interazioni pagina -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* Gestione Accordion FAQ */
+            const faqBoxes = document.querySelectorAll('.faq-box');
+            
+            faqBoxes.forEach(box => {
+                const trigger = box.querySelector('.faq-trigger');
+                trigger.addEventListener('click', () => {
+                    const isActive = box.classList.contains('active');
+                    
+                    // Chiude tutti gli altri
+                    faqBoxes.forEach(b => b.classList.remove('active'));
+                    
+                    // Apre il corrente se non era già attivo
+                    if (!isActive) {
+                        box.classList.add('active');
+                    }
+                });
+            });
+
+            /* Effetto scroll per le card */
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.category-card, .step-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

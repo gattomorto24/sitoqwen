@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo - Sgombero Catania</title>
+    <!-- File CSS globale -->
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+      (function(){
+        try{
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if(meta) meta.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
+        }catch(e){}
+      })();
+    </script>
+
+    <style>
+        /* --- STILE APPLE / SF PRO --- */
+        
+        :root {
+            /* Apple System Font Stack: Usa SF Pro su Mac/iOS, Segoe UI su Windows, Roboto su Android */
+            --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --section-spacing: 100px;
+        }
+
+        [data-theme='dark'] {
+            --glass-bg: rgba(28, 28, 30, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: var(--font-apple);
+            letter-spacing: -0.015em; /* Tipico tracking stretto di Apple */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-apple);
+            font-weight: 700; /* Bold per i titoli come nel design Apple */
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            font-family: var(--font-apple);
+            font-weight: 400;
+            line-height: 1.65;
+        }
+
+        /* Hero Minimalista */
+        .apple-hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(176,141,87,0.08) 0%, transparent 70%);
+        }
+
+        .apple-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .apple-hero h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.05;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-color) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .apple-hero p {
+            font-size: 1.35rem; /* Font grande tipico delle intro Apple */
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Griglia valori "Bento Box" style */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto auto; /* Due righe automatiche */
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border-radius: 24px; /* Angoli molto arrotondati */
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Layout Bento */
+        .card-large { grid-column: span 12; }
+        .card-medium { grid-column: span 6; }
+        .card-small { grid-column: span 4; }
+
+        @media (max-width: 900px) {
+            .card-medium { grid-column: span 12; }
+            .card-small { grid-column: span 12; }
+        }
+
+        .bento-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--antique-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bento-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Sezione Storia con Timeline visuale */
+        .history-section {
+            padding: var(--section-spacing) 0;
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            letter-spacing: -0.05em;
+        }
+
+        /* Immagini con stile "Glass" */
+        .image-glass {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/9;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        /* CTA Minimal */
+        .cta-minimal {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .btn-apple {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-apple:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive images inside glass containers */
+        .image-glass img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder per Header -->
+    <div id="main-header" class="header-placeholder" aria-hidden="true"></div>
+
+    <main class="content" id="main-content">
+        
+        <!-- Hero Section -->
+        <section class="apple-hero">
+            <div class="container">
+                <span class="apple-eyebrow">La Nostra Storia</span>
+                <h1>Più di semplici<br>sgomberi.</h1>
+                <p>Dal 2010 trasformiamo il caos in ordine. Recuperiamo valore dal passato e liberiamo spazio per il tuo futuro, con un approccio etico e professionale.</p>
+            </div>
+        </section>
+
+        <!-- Valori Bento Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="bento-grid">
+                    <!-- Card Grande: Chi Siamo -->
+                    <div class="bento-card card-large">
+                        <div>
+                            <span class="bento-icon">🏢</span>
+                            <h3>L'Azienda</h3>
+                            <p>Sgombero Catania nasce dall'idea di offrire un servizio "chiavi in mano" che vada oltre il semplice trasporto. Siamo antiquari, esperti di logistica e professionisti dello smaltimento, uniti per offrire un servizio unico in tutta la Sicilia orientale.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card Media: Il Metodo -->
+                    <div class="bento-card card-medium">
+                        <span class="bento-icon">♻️</span>
+                        <h3>Eco-Sostenibilità</h3>
+                        <p>Non buttiamo tutto. Il nostro obiettivo primario è il riciclo e il riutilizzo. Ciò che non può essere venduto viene smaltito rigorosamente secondo le normative ambientali vigenti.</p>
+                    </div>
+
+                    <!-- Card Media: Velocità -->
+                    <div class="bento-card card-medium">
+                        <span class="bento-icon">⚡</span>
+                        <h3>Rapidità Apple-like</h3>
+                        <p>Sappiamo che il tempo è prezioso. Garantiamo sopralluoghi in 24h e sgomberi completi anche in una sola giornata lavorativa.</p>
+                    </div>
+
+                    <!-- Cards Piccole: Statistiche -->
+                    <div class="bento-card card-small" style="text-align:center; justify-content:center;">
+                        <div class="stat-number">15+</div>
+                        <p style="font-weight:600">Anni di Esperienza</p>
+                    </div>
+                    <div class="bento-card card-small" style="text-align:center; justify-content:center;">
+                        <div class="stat-number">5k+</div>
+                        <p style="font-weight:600">Clienti Soddisfatti</p>
+                    </div>
+                    <div class="bento-card card-small" style="text-align:center; justify-content:center;">
+                        <div class="stat-number">100%</div>
+                        <p style="font-weight:600">Affidabilità</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Filosofia -->
+        <section class="history-section">
+            <div class="container">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center;">
+                    <div class="image-glass">
+                        <img src="https://www.sgomberocatania.it/wp-content/uploads/2025/08/9e3f5166-ff50-47fc-be17-aa4e71bb1ab8.png" alt="Team Sgombero Catania al lavoro in ambiente pulito" loading="lazy" decoding="async" width="1200" height="675">
+                    </div>
+                    <div>
+                        <span class="apple-eyebrow">La Nostra Filosofia</span>
+                        <h2 style="font-size:2.5rem; margin-bottom:20px;">Trasparenza prima di tutto.</h2>
+                        <p style="margin-bottom:20px;">Molti cercano informazioni su "Sgombero Catania" per capire di chi fidarsi. Noi rispondiamo mettendoci la faccia.</p>
+                        <p>I nostri preventivi sono chiari, senza costi nascosti. Se troviamo oggetti di valore durante lo sgombero, il loro valore viene immediatamente scontato dal costo del servizio o pagato in contanti.</p>
+                        
+                        <div class="cta-minimal" style="text-align:left; margin-top:30px;">
+                            <a href="servizi.html" class="btn-apple">Scopri i nostri servizi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perché Sceglierci -->
+        <section class="section" style="padding-bottom:120px;">
+            <div class="container">
+                <h2 style="text-align:center; font-size:2.5rem; margin-bottom:60px;">Perché i catanesi ci scelgono</h2>
+                
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:40px;">
+                    <div style="padding:20px;">
+                        <h3 style="font-size:1.4rem; margin-bottom:10px;">Preventivi Gratuiti</h3>
+                        <p style="color:var(--text-muted)">Nessun impegno. Veniamo, valutiamo e ti diamo un prezzo fisso.</p>
+                    </div>
+                    <div style="padding:20px; border-left: 1px solid var(--border-color);">
+                        <h3 style="font-size:1.4rem; margin-bottom:10px;">Mezzi Propri</h3>
+                        <p style="color:var(--text-muted)">Disponiamo di camion, scale aeree e furgoni per ogni esigenza logistica.</p>
+                    </div>
+                    <div style="padding:20px; border-left: 1px solid var(--border-color);">
+                        <h3 style="font-size:1.4rem; margin-bottom:10px;">Pulizia Finale</h3>
+                        <p style="color:var(--text-muted)">Lasciamo i locali non solo vuoti, ma spazzati e in ordine.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer e Widget -->
+    <div id="main-footer"></div>
+    <div id="whatsapp-widget"></div>
+
+    <script src="script.js" defer></script>
+    
+    <!-- Animazioni Semplici allo scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.bento-card, .history-section > div > div').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)'; // Transizione fluida "Apple"
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
