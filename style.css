@@ -59,7 +59,7 @@ body {
     --border: rgba(0, 0, 0, 0.08);
     --border-color: var(--border);
 
-    --logo-image: url('assets/logo-dark.png');
+    --logo-image: url('assets/logo-dark.webp');
     --mobile-menu-bg: rgba(255, 255, 255, 0.95);
 
     color-scheme: light;
@@ -99,7 +99,7 @@ html[data-theme='dark'], :root[data-theme='dark'] {
     --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.7);
     --shadow-glow: 0 0 20px rgba(74, 163, 255, 0.15);
 
-    --logo-image: url('assets/logo-white.png');
+    --logo-image: url('assets/logo-white.webp');
 
     color-scheme: dark;
 }
@@ -779,9 +779,10 @@ section { padding: 100px 0; }
 
 textarea.form-control { min-height: 160px; resize: vertical; }
 
+/* Improved contrast for accessibility */
 .submit-button {
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: #0056b3; /* darker blue for better contrast */
+    color: #fff;
     border: none;
     padding: 16px 40px;
     border-radius: 50px;
@@ -793,6 +794,7 @@ textarea.form-control { min-height: 160px; resize: vertical; }
     margin-top: 10px;
     width: 100%;
     max-width: 300px;
+    box-shadow: 0 0 0 2px #003366; /* subtle outline for focus */
 }
 
 .submit-button:hover {
@@ -801,9 +803,10 @@ textarea.form-control { min-height: 160px; resize: vertical; }
     box-shadow: 0 4px 15px rgba(0,113,227,.25);
 }
 
+/* Improved contrast for accessibility */
 .whatsapp-button {
-    background-color: var(--whatsapp-start);
-    color: var(--white);
+    background-color: #075e54; /* WhatsApp dark green for contrast */
+    color: #fff;
     border: none;
     padding: 16px 30px;
     border-radius: 50px;
@@ -815,9 +818,10 @@ textarea.form-control { min-height: 160px; resize: vertical; }
     gap: 10px;
     margin-top: 10px;
     transition: var(--transition);
-    box-shadow: 0 4px 10px rgba(0,128,105,.18);
+    box-shadow: 0 4px 10px rgba(7,94,84,.18);
     text-decoration: none;
     width: fit-content;
+    box-shadow: 0 0 0 2px #003366; /* subtle outline for focus */
 }
 
 .whatsapp-button:hover {
