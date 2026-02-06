@@ -1,18 +1,35 @@
-<!-- Fonts & Icons -->
+<!-- =========================
+     FONTS & ICONS PRELOAD
+     ========================= -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Preload delle immagini del logo per evitare il "flickering" al cambio tema -->
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/gattomorto24/sitoqwen/main/black-logo.png">
 <link rel="preload" as="image" href="https://raw.githubusercontent.com/gattomorto24/sitoqwen/main/white-logo.png">
 
+<!-- =========================
+     HEADER CONTENT
+     ========================= -->
 <header class="site-header" role="banner">
     <div class="container header-container">
+        <!-- Logo con gestione tema dinamica tramite data attributes -->
         <a href="index.html" class="logo" aria-label="Sgomberi e Recupero - Homepage">
-            <img class="logo-img" src="assets/logo-dark.png" alt="Sgomberi e Recupero" width="180" height="44" decoding="async" loading="eager" data-light-src="https://raw.githubusercontent.com/gattomorto24/sitoqwen/main/black-logo.png" data-dark-src="https://raw.githubusercontent.com/gattomorto24/sitoqwen/main/white-logo.png">
+            <img class="logo-img" 
+                 src="assets/logo-dark.png" 
+                 alt="Sgomberi e Recupero" 
+                 width="180" 
+                 height="44" 
+                 decoding="async" 
+                 loading="eager" 
+                 data-light-src="assets/logo-dark.png"
+                 data-dark-src="assets/logo-light.png">
         </a>
 
+        <!-- Desktop Navigation -->
         <nav class="nav-desktop" role="navigation" aria-label="Navigazione principale">
             <ul id="nav-menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Home</a></li>
@@ -24,17 +41,27 @@
             </ul>
         </nav>
 
+        <!-- Header Actions -->
         <div class="header-actions" role="group" aria-label="Azioni intestazione">
+            <!-- Theme Toggle Button -->
             <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Cambia tema">
                 <span class="material-icons" aria-hidden="true">dark_mode</span>
             </button>
-            <a class="cta whatsapp-cta whatsapp-button" href="https://wa.me/393497500613" aria-label="Contattaci su WhatsApp" rel="noopener noreferrer"><span class="material-icons" aria-hidden="true">chat</span><span class="cta-text">WhatsApp</span></a>
+            
+            <!-- WhatsApp Button -->
+            <a class="cta whatsapp-cta whatsapp-button" href="https://wa.me/393497500613" aria-label="Contattaci su WhatsApp" rel="noopener noreferrer">
+                <span class="material-icons" aria-hidden="true">chat</span>
+                <span class="cta-text">WhatsApp</span>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
             <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Apri menu">
                 <span class="material-icons" aria-hidden="true">menu</span>
             </button>
         </div>
     </div>
 
+    <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="false">
         <nav role="navigation" aria-label="Menu mobile">
             <ul class="mobile-menu-list">
@@ -44,8 +71,13 @@
                 <li><a href="contatti.html">Contatti</a></li>
                 <li><a href="chi-siamo.html">Chi Siamo</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
+                <!-- Opzionale: Aggiunta CTA anche nel mobile menu per facilità d'uso -->
+                <li style="margin-top: 20px;">
+                   <a href="https://wa.me/393497500613" style="color: var(--whatsapp-start); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <span class="material-icons">chat</span> Scrivici su WhatsApp
+                   </a>
+                </li>
             </ul>
         </nav>
     </div>
 </header>
-

@@ -320,3 +320,4 @@ function initGlobalBehaviors() {
 window.addEventListener('DOMContentLoaded', () => {
     initComponents();
 });
+
