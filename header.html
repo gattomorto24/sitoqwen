@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!-- Preload delle immagini del logo per evitare il "flickering" al cambio tema -->
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/gattomorto24/sitoqwen/main/black-logo.png">
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/gattomorto24/sitoqwen/main/white-logo.png">
+<!-- Preload delle immagini del logo per performance ottimale -->
+<link rel="preload" as="image" href="assets/logo-dark.png">
+<link rel="preload" as="image" href="assets/logo-light.png">
 
 <!-- =========================
      HEADER CONTENT
@@ -17,6 +17,8 @@
 <header class="site-header" role="banner">
     <div class="container header-container">
         <!-- Logo con gestione tema dinamica tramite data attributes -->
+        <!-- NOTA: data-light-src è il logo scuro (per sfondo chiaro) -->
+        <!-- NOTA: data-dark-src è il logo chiaro (per sfondo scuro) -->
         <a href="index.html" class="logo" aria-label="Sgomberi e Recupero - Homepage">
             <img class="logo-img" 
                  src="assets/logo-dark.png" 
@@ -26,7 +28,7 @@
                  decoding="async" 
                  loading="eager" 
                  data-light-src="assets/logo-dark.png"
-                 data-dark-src="assets/logo-light.png">
+                 data-dark-src="assets/logo-white.png">
         </a>
 
         <!-- Desktop Navigation -->
@@ -71,9 +73,9 @@
                 <li><a href="contatti.html">Contatti</a></li>
                 <li><a href="chi-siamo.html">Chi Siamo</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <!-- Opzionale: Aggiunta CTA anche nel mobile menu per facilità d'uso -->
-                <li style="margin-top: 20px;">
-                   <a href="https://wa.me/393497500613" style="color: var(--whatsapp-start); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <!-- CTA Extra nel menu mobile -->
+                <li style="margin-top: 30px;">
+                   <a href="https://wa.me/393497500613" style="color: var(--whatsapp-start); display: flex; align-items: center; justify-content: center; gap: 10px;">
                         <span class="material-icons">chat</span> Scrivici su WhatsApp
                    </a>
                 </li>
