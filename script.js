@@ -28,7 +28,7 @@ async function initComponents() {
     await Promise.all([
         loadComponent('main-header', 'header.html'),
         loadComponent('main-footer', 'footer.html'),
-        loadComponent('whatsapp-widget', 'whatsapp.html')
+        loadComponent('popup-widget', 'popup.html')
     ]);
 
     // Ensure fonts loaded before expensive paint
@@ -41,6 +41,28 @@ async function initComponents() {
     initThemeToggle();
 
     initUI();
+
+    // Popup menu logic (spostato da popup.html)
+    setTimeout(() => {
+        const popupBtn = document.getElementById('popupBtn');
+        const popupMenu = document.getElementById('popupMenu');
+        const popupCancel = document.getElementById('popupCancel');
+        if (popupBtn && popupMenu) {
+            popupBtn.addEventListener('click',()=>{
+                popupMenu.classList.toggle('active');
+            });
+        }
+        if (popupCancel && popupMenu) {
+            popupCancel.addEventListener('click',()=>{
+                popupMenu.classList.remove('active');
+            });
+        }
+        document.addEventListener('click',e=>{
+            if(popupMenu && !popupMenu.contains(e.target) && e.target!==popupBtn && popupMenu.classList.contains('active')){
+                popupMenu.classList.remove('active');
+            }
+        });
+    }, 300);
 }
 
 // Theme handling

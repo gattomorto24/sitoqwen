@@ -1,0 +1,39 @@
+<style>
+.popup-float{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--whatsapp-start),var(--whatsapp-end));color:var(--white);box-shadow:0 10px 30px rgba(2,6,23,.12);z-index:12000;transition:transform .18s ease,box-shadow .18s ease}
+.popup-float:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(2,6,23,.18)}
+.popup-float svg{width:36px;height:36px;display:block}
+.popup-menu{position:fixed;right:20px;bottom:90px;width:320px;max-width:90vw;background:var(--surface);border-radius:18px;box-shadow:0 8px 32px rgba(2,6,23,.18);padding:24px 18px;display:none;flex-direction:column;gap:18px;z-index:12001;}
+.popup-menu.active{display:flex;}
+.popup-menu button,.popup-menu a{font-size:1.15rem;padding:14px 18px;border-radius:12px;border:none;background:var(--muted);color:var(--primary);text-align:left;display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s;}
+.popup-menu button:hover,.popup-menu a:hover{background:var(--primary);color:#fff;}
+.popup-menu .popup-cancel{background:var(--surface-2);color:var(--text-dark);}
+</style>
+<div class="popup-float" id="popupBtn" title="Contatti Rapidi" aria-label="Apri menu contatti rapidi">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="12" fill="currentColor"/>
+        <text x="12" y="16" text-anchor="middle" font-size="12" fill="#fff">+</text>
+    </svg>
+</div>
+<div class="popup-menu" id="popupMenu" aria-modal="true" role="dialog">
+    <a href="https://wa.me/393497500613" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp"><span class="material-icons">chat</span> WhatsApp</a>
+    <a href="tel:393497500613" aria-label="Chiama STR Trasporti"><span class="material-icons">call</span> Chiama</a>
+    <a href="https://www.sgomberocatania.it" target="_blank" rel="noopener" aria-label="Visita il sito principale"><span class="material-icons">public</span> Visita il nostro sito principale</a>
+    <button class="popup-cancel" id="popupCancel">Annulla</button>
+</div>
+<script>
+// Popup menu logic
+const popupBtn = document.getElementById('popupBtn');
+const popupMenu = document.getElementById('popupMenu');
+const popupCancel = document.getElementById('popupCancel');
+popupBtn.addEventListener('click',()=>{
+    popupMenu.classList.toggle('active');
+});
+popupCancel.addEventListener('click',()=>{
+    popupMenu.classList.remove('active');
+});
+document.addEventListener('click',e=>{
+    if(!popupMenu.contains(e.target) && e.target!==popupBtn && popupMenu.classList.contains('active')){
+        popupMenu.classList.remove('active');
+    }
+});
+</script>
