@@ -1,3 +1,7 @@
+.popup-menu-ios .popup-cancel:hover {
+    background: #ff3b30;
+    color: #fff;
+}
 <style>
 .popup-float{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--whatsapp-start),var(--whatsapp-end));color:var(--white);box-shadow:0 10px 30px rgba(2,6,23,.12);z-index:12000;transition:transform .18s ease,box-shadow .18s ease}
 .popup-float:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(2,6,23,.18)}
@@ -8,32 +12,160 @@
 .popup-menu button:hover,.popup-menu a:hover{background:var(--primary);color:#fff;}
 .popup-menu .popup-cancel{background:var(--surface-2);color:var(--text-dark);}
 </style>
-<div class="popup-float" id="popupBtn" title="Contatti Rapidi" aria-label="Apri menu contatti rapidi">
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="12" fill="currentColor"/>
-        <text x="12" y="16" text-anchor="middle" font-size="12" fill="#fff">+</text>
-    </svg>
+<style>
+.popup-float-ios {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg,#25d366,#128C7E);
+    color: #fff;
+    box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E;
+    z-index: 12000;
+    animation: glowPulse 2.2s infinite ease-in-out;
+}
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
+    50% { box-shadow: 0 0 48px 16px #25d366, 0 0 16px 4px #128C7E; }
+    100% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
+}
+.popup-float-ios svg {
+    width: 36px;
+    height: 36px;
+    display: block;
+}
+.bubble-group .bubble {
+    animation: bubbleMove 2.5s infinite alternate;
+}
+@keyframes bubbleMove {
+    0% { opacity: 0.7; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-8px); }
+    100% { opacity: 0.7; transform: translateY(0); }
+}
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 12001;
+    display: none;
+}
+.popup-overlay.active {
+    display: block;
+}
+.popup-menu-ios {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 8px 32px rgba(2,6,23,.18);
+    padding: 32px 18px 18px 18px;
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 12002;
+}
+.popup-menu-ios.active {
+    display: flex;
+}
+.popup-menu-ios .popup-btn {
+    font-size: 1.25rem;
+    padding: 18px 18px;
+    border-radius: 14px;
+    border: none;
+    background: #f2f2f7;
+    color: #0071e3;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s,color .2s;
+    font-weight: 600;
+}
+.popup-menu-ios .popup-btn:hover {
+    background: #0071e3;
+    color: #fff;
+}
+.popup-menu-ios .popup-cancel {
+    background: #f8f9fa;
+    color: #1c1c1e;
+    margin-top: 12px;
+    font-weight: 500;
+}
+.popup-menu-ios .popup-cancel:hover {
+    background: #ff3b30;
+    color: #fff;
+}
+</style>
+<div class="popup-float-ios" id="popupBtnIOS" title="Contatti Rapidi" aria-label="Apri menu contatti rapidi">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#25d366"/>
+                <g>
+                        <rect x="22" y="18" width="20" height="28" rx="6" fill="#fff" stroke="#128C7E" stroke-width="2"/>
+                        <rect x="28" y="24" width="8" height="16" rx="2" fill="#25d366"/>
+                        <circle cx="32" cy="46" r="2" fill="#128C7E"/>
+                </g>
+                <g class="bubble-group">
+                        <circle class="bubble" cx="50" cy="14" r="4" fill="#fff" opacity="0.7"/>
+                        <circle class="bubble" cx="56" cy="24" r="3" fill="#fff" opacity="0.5"/>
+                        <circle class="bubble" cx="44" cy="8" r="2" fill="#fff" opacity="0.4"/>
+                </g>
+        </svg>
 </div>
-<div class="popup-menu" id="popupMenu" aria-modal="true" role="dialog">
-    <a href="https://wa.me/393497500613" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp"><span class="material-icons">chat</span> WhatsApp</a>
-    <a href="tel:393497500613" aria-label="Chiama STR Trasporti"><span class="material-icons">call</span> Chiama</a>
-    <a href="https://www.sgomberocatania.it" target="_blank" rel="noopener" aria-label="Visita il sito principale"><span class="material-icons">public</span> Visita il nostro sito principale</a>
-    <button class="popup-cancel" id="popupCancel">Annulla</button>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="popup-menu-ios" id="popupMenuIOS" aria-modal="true" role="dialog">
+        <a href="https://wa.me/393497500613" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp" class="popup-btn"><span class="material-icons">chat</span> WhatsApp</a>
+        <a href="tel:393497500613" aria-label="Chiama STR Trasporti" class="popup-btn"><span class="material-icons">call</span> Chiama</a>
+        <a href="https://www.sgomberocatania.it" target="_blank" rel="noopener" aria-label="Visita il sito principale" class="popup-btn"><span class="material-icons">public</span> Visita il nostro sito principale</a>
+        <button class="popup-btn popup-cancel" id="popupCancelIOS">Annulla</button>
 </div>
-<script>
-// Popup menu logic
-const popupBtn = document.getElementById('popupBtn');
-const popupMenu = document.getElementById('popupMenu');
-const popupCancel = document.getElementById('popupCancel');
-popupBtn.addEventListener('click',()=>{
-    popupMenu.classList.toggle('active');
-});
-popupCancel.addEventListener('click',()=>{
-    popupMenu.classList.remove('active');
-});
-document.addEventListener('click',e=>{
-    if(!popupMenu.contains(e.target) && e.target!==popupBtn && popupMenu.classList.contains('active')){
-        popupMenu.classList.remove('active');
-    }
-});
-</script>
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#25d366"/>
+                <g>
+                        <rect x="22" y="18" width="20" height="28" rx="6" fill="#fff" stroke="#128C7E" stroke-width="2"/>
+                        <rect x="28" y="24" width="8" height="16" rx="2" fill="#25d366"/>
+                        <circle cx="32" cy="46" r="2" fill="#128C7E"/>
+                </g>
+                <g class="bubble-group">
+                        <circle class="bubble" cx="50" cy="14" r="4" fill="#fff" opacity="0.7"/>
+                        <circle class="bubble" cx="56" cy="24" r="3" fill="#fff" opacity="0.5"/>
+                        <circle class="bubble" cx="44" cy="8" r="2" fill="#fff" opacity="0.4"/>
+                </g>
+        </svg>
+</div>
+<style>
+.glow-phone {
+    box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E;
+    animation: glowPulse 2.2s infinite ease-in-out;
+}
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
+    50% { box-shadow: 0 0 48px 16px #25d366, 0 0 16px 4px #128C7E; }
+    100% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
+}
+.bubble-group .bubble {
+    animation: bubbleMove 2.5s infinite alternate;
+}
+@keyframes bubbleMove {
+    0% { opacity: 0.7; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-8px); }
+    100% { opacity: 0.7; transform: translateY(0); }
+}
+</style>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="popup-menu-ios" id="popupMenuIOS" aria-modal="true" role="dialog">
+    <a href="https://wa.me/393497500613" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp" class="popup-btn"><span class="material-icons">chat</span> WhatsApp</a>
+    <a href="tel:393497500613" aria-label="Chiama STR Trasporti" class="popup-btn"><span class="material-icons">call</span> Chiama</a>
+    <a href="https://www.sgomberocatania.it" target="_blank" rel="noopener" aria-label="Visita il sito principale" class="popup-btn"><span class="material-icons">public</span> Visita il nostro sito principale</a>
+    <button class="popup-btn popup-cancel" id="popupCancelIOS">Annulla</button>
+</div>

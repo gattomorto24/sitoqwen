@@ -42,26 +42,38 @@ async function initComponents() {
 
     initUI();
 
-    // Popup menu logic (spostato da popup.html)
+    // Popup menu logic (nuovo stile iOS)
     setTimeout(() => {
-        const popupBtn = document.getElementById('popupBtn');
-        const popupMenu = document.getElementById('popupMenu');
-        const popupCancel = document.getElementById('popupCancel');
-        if (popupBtn && popupMenu) {
+        const popupBtn = document.getElementById('popupBtnIOS');
+        const popupMenu = document.getElementById('popupMenuIOS');
+        const popupCancel = document.getElementById('popupCancelIOS');
+        const popupOverlay = document.getElementById('popupOverlay');
+            if (popupBtn && popupMenu && popupOverlay && popupCancel) {
             popupBtn.addEventListener('click',()=>{
-                popupMenu.classList.toggle('active');
+                popupMenu.classList.add('active');
+                popupOverlay.classList.add('active');
             });
         }
-        if (popupCancel && popupMenu) {
+        if (popupCancel && popupMenu && popupOverlay) {
             popupCancel.addEventListener('click',()=>{
                 popupMenu.classList.remove('active');
+                popupOverlay.classList.remove('active');
             });
         }
-        document.addEventListener('click',e=>{
-            if(popupMenu && !popupMenu.contains(e.target) && e.target!==popupBtn && popupMenu.classList.contains('active')){
+        if (popupOverlay && popupMenu) {
+            popupOverlay.addEventListener('click',()=>{
                 popupMenu.classList.remove('active');
-            }
-        });
+                popupOverlay.classList.remove('active');
+            });
+        }
+            // Chiudi menu con ESC
+            document.addEventListener("keydown", function(e) {
+                if (popupMenu.classList.contains("active") && (e.key === "Escape" || e.key === "Esc")) {
+                    popupMenu.classList.remove("active");
+                    popupOverlay.classList.remove("active");
+                    document.body.style.overflow = "";
+                }
+            });
     }, 300);
 }
 

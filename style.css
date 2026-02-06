@@ -279,24 +279,96 @@ header {
     justify-content: flex-end;
 }
 
+.header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+    padding: 10px 18px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+}
+.header-cta-whatsapp {
+    background: linear-gradient(90deg, var(--whatsapp-start), var(--whatsapp-end));
+    color: var(--whatsapp-foreground);
+}
+.header-cta-phone {
+    background: linear-gradient(90deg, #0071e3, #34c759);
+    color: #fff;
+}
+.header-cta:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+.header-cta .material-icons {
+    font-size: 22px;
+}
+.header-cta .cta-text {
+    display: inline-block;
+}
+
+@media (max-width: 600px) {
+    .header-cta {
+        padding: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 0;
+        box-shadow: var(--shadow);
+    }
+    .header-cta .cta-text {
+        display: none;
+    }
+    .header-cta .material-icons {
+        font-size: 26px;
+    }
+}
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     background: transparent;
     border: 1px solid var(--border);
-    padding: 8px;
-    border-radius: 10px;
+    padding: 8px 18px;
+    border-radius: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--text-dark);
     cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
     transition: var(--transition);
+    box-shadow: var(--shadow);
 }
-
+.theme-toggle .material-icons {
+    font-size: 22px;
+}
 .theme-toggle:hover {
     background-color: var(--surface-2);
     border-color: var(--primary);
     transform: rotate(15deg);
+}
+@media (max-width: 600px) {
+    .theme-toggle {
+        padding: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 0;
+        box-shadow: var(--shadow);
+    }
+    .theme-toggle .material-icons {
+        font-size: 26px;
+    }
 }
 
 /* CTA BUTTONS */
