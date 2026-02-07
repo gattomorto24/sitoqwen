@@ -16,6 +16,8 @@
   --primary-dark: #005bb5;
   --secondary: #34c759;
   --accent: #ff9500;
+  --antique-gold: #b08d57;
+  --antique-dark: #8e6f42;
 
   /* Backgrounds – subtle warm gray, NOT white */
   --bg-body: #f2f2f7;
@@ -43,6 +45,8 @@
 
   /* Misc */
   --radius: 12px;
+  --card-radius: 24px;
+  --section-spacing: 100px;
   --transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   --focus-ring: 0 0 0 3px rgba(0, 113, 227, 0.25);
 
@@ -55,6 +59,15 @@
   --logo-image: url('assets/logo-dark.webp');
   --mobile-menu-bg: rgba(255, 255, 255, 0.96);
 
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+
+  /* Font stacks */
+  --font-apple: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'SF Pro Text', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+
   color-scheme: light;
 }
 
@@ -64,6 +77,8 @@ html[data-theme='dark'],
   --primary: #4aa3ff;
   --primary-dark: #3385ff;
   --secondary: #30d158;
+  --antique-gold: #c9a566;
+  --antique-dark: #b08d57;
 
   /* True OLED black backgrounds */
   --bg-body: #000000;
@@ -91,6 +106,9 @@ html[data-theme='dark'],
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.8);
   --shadow-glow: 0 0 20px rgba(74, 163, 255, 0.12);
 
+  --glass-bg: rgba(28, 28, 30, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
   --logo-image: url('assets/logo-white.webp');
 
   color-scheme: dark;
@@ -100,15 +118,31 @@ html[data-theme='dark'],
    2. BASE
    ========================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter',
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  font-family: var(--font-apple);
   background-color: var(--bg-body);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.015em;
   transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-apple);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.65;
 }
 
 .container {
@@ -260,7 +294,11 @@ nav {
 }
 
 .header-cta-whatsapp {
-  background: linear-gradient(90deg, var(--whatsapp-start), var(--whatsapp-end));
+  background: linear-gradient(
+    90deg,
+    var(--whatsapp-start),
+    var(--whatsapp-end)
+  );
   color: var(--whatsapp-foreground);
 }
 
@@ -328,7 +366,11 @@ nav {
   padding: 10px 18px;
   border-radius: 14px;
   font-size: 1rem;
-  background: linear-gradient(90deg, var(--whatsapp-start), var(--whatsapp-end));
+  background: linear-gradient(
+    90deg,
+    var(--whatsapp-start),
+    var(--whatsapp-end)
+  );
   color: var(--whatsapp-foreground);
   border: 1px solid transparent;
   box-shadow: var(--shadow);
@@ -358,7 +400,7 @@ nav {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* CTA Stack (Material Icons) */
+/* CTA Stack */
 .cta-stack {
   display: flex;
   flex-direction: column;
@@ -391,6 +433,50 @@ nav {
   background-color: var(--whatsapp-end);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Gold variant buttons */
+.btn-gold {
+  background: var(--antique-gold);
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+  box-shadow: 0 10px 20px rgba(176, 141, 87, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background: var(--antique-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(176, 141, 87, 0.3);
+}
+
+/* Apple-style inverted button */
+.btn-apple {
+  background: var(--text-primary);
+  color: var(--bg-body);
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-apple:hover {
+  opacity: 0.8;
 }
 
 /* Status badge */
@@ -432,7 +518,11 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 70%
+  );
   z-index: 0;
   pointer-events: none;
 }
@@ -476,6 +566,74 @@ nav {
   margin-left: auto;
   margin-right: auto;
   color: rgba(255, 255, 255, 0.95);
+}
+
+/* Sub-page Hero (Contatti, Servizi dettaglio) */
+.hero-sub {
+  padding: 100px 0 60px;
+  background: linear-gradient(
+    135deg,
+    rgba(176, 141, 87, 0.1) 0%,
+    transparent 100%
+  );
+  text-align: center;
+}
+
+.hero-sub h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 20px;
+  color: var(--antique-gold);
+}
+
+.hero-sub p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Apple-style Hero (Chi Siamo) */
+.apple-hero {
+  padding: 120px 0 80px;
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(176, 141, 87, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.apple-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--antique-gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.apple-hero h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 24px;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--text-muted) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.apple-hero p {
+  font-size: 1.35rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 /* =========================================
@@ -642,7 +800,7 @@ section {
 }
 
 /* =========================================
-   9. SERVICE CARDS
+   9. SERVICE CARDS (Base)
    ========================================= */
 
 .services-grid {
@@ -706,7 +864,351 @@ section {
 }
 
 /* =========================================
-   10. COVERAGE
+   9b. SERVICE CARDS (Apple variant with images)
+   ========================================= */
+
+.services-grid-apple {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card-apple {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card-apple:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: transparent;
+}
+
+.card-image-wrapper {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background-color: var(--bg-surface-2);
+  position: relative;
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.service-card-apple:hover .card-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.card-content p {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   10. BENTO GRID (Chi Siamo)
+   ========================================= */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  gap: 24px;
+  margin-top: 60px;
+}
+
+.bento-card {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bento-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-large {
+  grid-column: span 12;
+}
+.card-medium {
+  grid-column: span 6;
+}
+.card-small {
+  grid-column: span 4;
+}
+
+.bento-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--antique-gold), var(--antique-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bento-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.bento-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.stat-number {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--antique-gold);
+  margin-bottom: 10px;
+  letter-spacing: -0.05em;
+}
+
+/* Glass image containers */
+.image-glass {
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/9;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.image-glass img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* History section */
+.history-section {
+  padding: var(--section-spacing) 0;
+  position: relative;
+}
+
+/* CTA Minimal */
+.cta-minimal {
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* =========================================
+   11. CATEGORY CARDS (Servizi dettaglio)
+   ========================================= */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 35px 25px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--antique-gold);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--antique-gold);
+}
+
+.category-card:hover::before {
+  transform: scaleX(1);
+}
+
+.category-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  display: block;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+}
+
+.category-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.category-card p {
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   12. PROCESS & STEPS
+   ========================================= */
+
+/* Process section (Servizi) */
+.process-section {
+  padding: var(--section-spacing) 0;
+  background: var(--bg-card);
+  margin-top: 60px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.step-circle {
+  width: 64px;
+  height: 64px;
+  background: var(--antique-gold);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 24px;
+  box-shadow: 0 10px 20px rgba(176, 141, 87, 0.3);
+}
+
+/* Steps container (Servizi dettaglio) */
+.steps-container {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  padding: 50px;
+  margin: 40px 0;
+  border: 1px solid var(--border);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.step-item {
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: var(--antique-gold);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 15px rgba(176, 141, 87, 0.3);
+}
+
+.step-item h3 {
+  color: var(--text-primary);
+}
+
+.step-item p {
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   13. ZONE PILLS
+   ========================================= */
+
+.zones-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.zone-pill {
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.zone-pill:hover {
+  background: var(--antique-gold);
+  color: #ffffff;
+  border-color: var(--antique-gold);
+  transform: scale(1.05);
+}
+
+/* =========================================
+   14. COVERAGE
    ========================================= */
 
 .coverage {
@@ -750,8 +1252,67 @@ section {
   border-color: var(--primary);
 }
 
+/* Coverage list (animated page) */
+main#main-content > section {
+  text-align: center;
+  margin-bottom: 32px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverage-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 32px 0;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.coverage-list li {
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 22px 36px;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    box-shadow 0.3s, background 0.2s, color 0.2s;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(60px) scale(0.96);
+  text-align: center;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border);
+}
+
+.coverage-list li:first-child {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #ffffff;
+  border-color: transparent;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.coverage-list li:hover {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-hover);
+  transform: scale(1.09) translateY(-6px);
+  border-color: var(--primary);
+}
+
 /* =========================================
-   11. STRENGTHS
+   15. STRENGTHS
    ========================================= */
 
 .strengths-grid {
@@ -809,7 +1370,7 @@ section {
 }
 
 /* =========================================
-   12. CONTACT
+   16. CONTACT
    ========================================= */
 
 .contact {
@@ -891,6 +1452,66 @@ section {
   transform: translateX(3px);
 }
 
+/* Info cards (Contatti page) */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--antique-gold);
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  display: block;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
+}
+
+.info-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+.info-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Form container (Contatti page) */
+.form-container {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
+
+.form-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--antique-gold);
+}
+
 /* Form */
 .contact-form {
   background: var(--bg-card);
@@ -907,7 +1528,7 @@ section {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.05rem;
   color: var(--text-primary);
 }
@@ -925,7 +1546,7 @@ section {
   color: var(--text-primary);
 }
 
-/* Light mode: make input borders more visible */
+/* Light mode: make input borders clearly visible */
 :root .form-control {
   border-color: #c7c7cc;
 }
@@ -968,6 +1589,49 @@ textarea.form-control {
   box-shadow: 0 4px 15px rgba(0, 113, 227, 0.25);
 }
 
+/* Gold submit variant */
+.submit-button-gold {
+  background: var(--antique-gold);
+  color: #ffffff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: var(--transition);
+  margin-top: 10px;
+}
+
+.submit-button-gold:hover {
+  background: var(--antique-dark);
+  transform: translateY(-2px);
+}
+
+/* Map */
+.map-section {
+  margin-top: 60px;
+}
+
+.map-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  position: relative;
+}
+
+.map-placeholder-content {
+  text-align: center;
+}
+
 /* WhatsApp Button */
 .whatsapp-button {
   background-color: var(--whatsapp-start);
@@ -995,7 +1659,64 @@ textarea.form-control {
 }
 
 /* =========================================
-   13. FAQ
+   17. TESTIMONIALS
+   ========================================= */
+
+.testimonial-grid,
+.testimonial-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.testimonial-apple,
+.testimonial-item {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.testimonial-apple::after,
+.testimonial-item::after {
+  content: '\201C';
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 4rem;
+  font-family: 'Playfair Display', serif;
+  color: var(--antique-gold);
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.testimonial-apple p,
+.testimonial-item p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.quote-icon {
+  font-size: 2rem;
+  color: var(--antique-gold);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.testimonial-author {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--antique-gold);
+}
+
+/* =========================================
+   18. FAQ (Base)
    ========================================= */
 
 .faq-item {
@@ -1025,7 +1746,8 @@ textarea.form-control {
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.3s ease;
   color: var(--text-secondary);
   padding-bottom: 0;
   line-height: 1.7;
@@ -1049,8 +1771,82 @@ textarea.form-control {
   transform: rotate(180deg);
 }
 
+/* FAQ Minimal (alternate) */
+.faq-minimal h4 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  margin-top: 24px;
+  color: var(--text-primary);
+}
+
+.faq-minimal p {
+  color: var(--text-secondary);
+}
+
+/* FAQ boxed variant (Servizi dettaglio) */
+.faq-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.faq-box {
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.faq-trigger {
+  width: 100%;
+  padding: 20px 25px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: background 0.3s ease;
+}
+
+.faq-trigger:hover {
+  background: rgba(176, 141, 87, 0.05);
+}
+
+[data-theme='dark'] .faq-trigger:hover {
+  background: rgba(201, 165, 102, 0.08);
+}
+
+.faq-content {
+  max-height: 0;
+  padding: 0 25px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.faq-box.active .faq-content {
+  max-height: 300px;
+  padding-bottom: 25px;
+}
+
+.faq-icon {
+  font-size: 1.4rem;
+  color: var(--antique-gold);
+  transition: transform 0.3s ease;
+}
+
+.faq-box.active .faq-icon {
+  transform: rotate(45deg);
+}
+
 /* =========================================
-   14. WHATSAPP FLOAT
+   19. WHATSAPP FLOAT
    ========================================= */
 
 .wa-float {
@@ -1063,7 +1859,11 @@ textarea.form-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--whatsapp-start), var(--whatsapp-end));
+  background: linear-gradient(
+    135deg,
+    var(--whatsapp-start),
+    var(--whatsapp-end)
+  );
   color: var(--whatsapp-foreground);
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
   z-index: 12000;
@@ -1076,7 +1876,7 @@ textarea.form-control {
 }
 
 /* =========================================
-   15. FOOTER
+   20. FOOTER
    ========================================= */
 
 footer {
@@ -1159,7 +1959,7 @@ footer {
 }
 
 /* =========================================
-   16. UTILITIES & ANIMATIONS
+   21. UTILITIES & ANIMATIONS
    ========================================= */
 
 .ios-transition {
@@ -1184,7 +1984,7 @@ footer {
 }
 
 /* =========================================
-   17. RESPONSIVE
+   22. RESPONSIVE
    ========================================= */
 
 @media (max-width: 992px) {
@@ -1196,12 +1996,24 @@ footer {
   }
 }
 
+@media (max-width: 900px) {
+  .card-medium {
+    grid-column: span 12;
+  }
+  .card-small {
+    grid-column: span 12;
+  }
+}
+
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.3rem;
   }
   .hero p {
     font-size: 1.1rem;
+  }
+  .hero-sub h1 {
+    font-size: 2.2rem;
   }
   .section-title h2 {
     font-size: 2.1rem;
@@ -1217,6 +2029,18 @@ footer {
     width: 100%;
     max-width: none;
     padding: 0 20px;
+  }
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+  .services-grid-apple {
+    grid-template-columns: 1fr;
+  }
+  .steps-container {
+    padding: 30px 20px;
+  }
+  .form-container {
+    padding: 25px;
   }
   footer {
     text-align: center;

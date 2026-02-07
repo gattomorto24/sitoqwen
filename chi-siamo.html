@@ -20,192 +20,7 @@
       })();
     </script>
 
-    <style>
-        /* --- STILE APPLE / SF PRO --- */
-        
-        :root {
-            /* Apple System Font Stack: Usa SF Pro su Mac/iOS, Segoe UI su Windows, Roboto su Android */
-            --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --section-spacing: 100px;
-        }
-
-        [data-theme='dark'] {
-            --glass-bg: rgba(28, 28, 30, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            font-family: var(--font-apple);
-            letter-spacing: -0.015em; /* Tipico tracking stretto di Apple */
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-apple);
-            font-weight: 700; /* Bold per i titoli come nel design Apple */
-            letter-spacing: -0.025em;
-        }
-
-        p {
-            font-family: var(--font-apple);
-            font-weight: 400;
-            line-height: 1.65;
-        }
-
-        /* Hero Minimalista */
-        .apple-hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(176,141,87,0.08) 0%, transparent 70%);
-        }
-
-        .apple-eyebrow {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--primary-color);
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .apple-hero h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            line-height: 1.05;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--text-color) 0%, var(--text-muted) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .apple-hero p {
-            font-size: 1.35rem; /* Font grande tipico delle intro Apple */
-            color: var(--text-muted);
-            max-width: 680px;
-            margin: 0 auto;
-            font-weight: 400;
-        }
-
-        /* Griglia valori "Bento Box" style */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: auto auto; /* Due righe automatiche */
-            gap: 24px;
-            margin-top: 60px;
-        }
-
-        .bento-card {
-            background: var(--card-bg);
-            border-radius: 24px; /* Angoli molto arrotondati */
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .bento-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-
-        /* Layout Bento */
-        .card-large { grid-column: span 12; }
-        .card-medium { grid-column: span 6; }
-        .card-small { grid-column: span 4; }
-
-        @media (max-width: 900px) {
-            .card-medium { grid-column: span 12; }
-            .card-small { grid-column: span 12; }
-        }
-
-        .bento-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), var(--antique-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .bento-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-        }
-
-        .bento-card p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* Sezione Storia con Timeline visuale */
-        .history-section {
-            padding: var(--section-spacing) 0;
-            position: relative;
-        }
-
-        .stat-number {
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 1;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            letter-spacing: -0.05em;
-        }
-
-        /* Immagini con stile "Glass" */
-        .image-glass {
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 16/9;
-            background: var(--card-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-        }
-
-        /* CTA Minimal */
-        .cta-minimal {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .btn-apple {
-            background: var(--text-color);
-            color: var(--bg-color);
-            padding: 14px 28px;
-            border-radius: 30px;
-            font-size: 17px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn-apple:hover {
-            opacity: 0.8;
-        }
-
-        /* Responsive images inside glass containers */
-        .image-glass img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-    </style>
+    
 </head>
 <body>
 
@@ -246,7 +61,7 @@
                     <!-- Card Media: Velocità -->
                     <div class="bento-card card-medium">
                         <span class="bento-icon">⚡</span>
-                        <h3>Rapidità Apple-like</h3>
+                        <h3>Rapidità</h3>
                         <p>Sappiamo che il tempo è prezioso. Garantiamo sopralluoghi in 24h e sgomberi completi anche in una sola giornata lavorativa.</p>
                     </div>
 
@@ -256,7 +71,7 @@
                         <p style="font-weight:600">Anni di Esperienza</p>
                     </div>
                     <div class="bento-card card-small" style="text-align:center; justify-content:center;">
-                        <div class="stat-number">5k+</div>
+                        <div class="stat-number">10k+</div>
                         <p style="font-weight:600">Clienti Soddisfatti</p>
                     </div>
                     <div class="bento-card card-small" style="text-align:center; justify-content:center;">
