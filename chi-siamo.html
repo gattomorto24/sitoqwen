@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi Siamo - Sgombero Catania</title>
-    <!-- File CSS globale -->
+    
+    <!-- Caricamento file CSS globale (OLED, Variabili, Reset) -->
     <link rel="stylesheet" href="style.css">
     
+    <!-- Script critico per il tema (evita il flash bianco) -->
     <script>
       (function(){
         try{
@@ -14,23 +16,123 @@
           const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           const theme = stored || (prefersDark ? 'dark' : 'light');
           document.documentElement.setAttribute('data-theme', theme);
-          const meta = document.querySelector('meta[name="theme-color"]');
-          if(meta) meta.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
         }catch(e){}
       })();
     </script>
 
-    
+    <!-- STILI SPECIFICI INTERNI (Per non toccare il CSS esterno) -->
+    <style>
+        /* --- BENTO GRID SYSTEM --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(160px, auto);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .bento-card {
+            background: var(--bg-card, #ffffff);
+            border: 1px solid var(--border, rgba(0,0,0,0.1));
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+        .card-large { grid-column: span 2; grid-row: span 2; }
+        .card-medium { grid-column: span 2; }
+        .card-small { grid-column: span 1; }
+        .bento-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .stat-number { font-size: 3rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 5px; }
+
+        /* --- FILOSOFIA: LAYOUT IMMAGINE GRANDE E NATURALE --- */
+        .history-section {
+            padding: 80px 0;
+        }
+
+        /* Trasformiamo la griglia in un layout verticale per dare spazio all'immagine */
+        .cinematic-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .image-glass-full {
+            width: 100%;
+            max-width: 1200px; /* Grandezza naturale dell'immagine */
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border: 1px solid var(--border);
+            background: var(--bg-surface-2);
+        }
+
+        /* L'immagine ora è a grandezza naturale, non ritagliata e fluida */
+        .image-glass-full img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* Garantisce che non ci siano ritagli */
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .image-glass-full:hover img {
+            transform: scale(1.02);
+        }
+
+        .philosophy-text-block {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .philosophy-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-large, .card-medium, .card-small { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            .philosophy-details { grid-template-columns: 1fr; }
+            .apple-hero h1 { font-size: 2.5rem; }
+            .bento-card { padding: 20px; }
+            .stat-number { font-size: 2.5rem; }
+        }
+
+        /* --- ANIMAZIONI --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Placeholder per Header -->
+    <!-- Placeholder per Header (caricato via JS) -->
     <div id="main-header" class="header-placeholder" aria-hidden="true"></div>
 
     <main class="content" id="main-content">
         
-        <!-- Hero Section -->
-        <section class="apple-hero">
+        <!-- Hero Section Apple Style -->
+        <section class="apple-hero reveal">
             <div class="container">
                 <span class="apple-eyebrow">La Nostra Storia</span>
                 <h1>Più di semplici<br>sgomberi.</h1>
@@ -43,38 +145,36 @@
             <div class="container">
                 <div class="bento-grid">
                     <!-- Card Grande: Chi Siamo -->
-                    <div class="bento-card card-large">
-                        <div>
-                            <span class="bento-icon">🏢</span>
-                            <h3>L'Azienda</h3>
-                            <p>Sgombero Catania nasce dall'idea di offrire un servizio "chiavi in mano" che vada oltre il semplice trasporto. Siamo antiquari, esperti di logistica e professionisti dello smaltimento, uniti per offrire un servizio unico in tutta la Sicilia orientale.</p>
-                        </div>
+                    <div class="bento-card card-large reveal">
+                        <span class="bento-icon">🏢</span>
+                        <h3>L'Azienda</h3>
+                        <p>Sgombero Catania nasce dall'idea di offrire un servizio "chiavi in mano" che vada oltre il semplice trasporto. Siamo antiquari, esperti di logistica e professionisti dello smaltimento, uniti per offrire un servizio unico in tutta la Sicilia orientale.</p>
                     </div>
 
                     <!-- Card Media: Il Metodo -->
-                    <div class="bento-card card-medium">
+                    <div class="bento-card card-medium reveal">
                         <span class="bento-icon">♻️</span>
                         <h3>Eco-Sostenibilità</h3>
                         <p>Non buttiamo tutto. Il nostro obiettivo primario è il riciclo e il riutilizzo. Ciò che non può essere venduto viene smaltito rigorosamente secondo le normative ambientali vigenti.</p>
                     </div>
 
                     <!-- Card Media: Velocità -->
-                    <div class="bento-card card-medium">
+                    <div class="bento-card card-medium reveal">
                         <span class="bento-icon">⚡</span>
                         <h3>Rapidità</h3>
                         <p>Sappiamo che il tempo è prezioso. Garantiamo sopralluoghi in 24h e sgomberi completi anche in una sola giornata lavorativa.</p>
                     </div>
 
                     <!-- Cards Piccole: Statistiche -->
-                    <div class="bento-card card-small" style="text-align:center; justify-content:center;">
+                    <div class="bento-card card-small reveal" style="text-align:center; justify-content:center;">
                         <div class="stat-number">15+</div>
                         <p style="font-weight:600">Anni di Esperienza</p>
                     </div>
-                    <div class="bento-card card-small" style="text-align:center; justify-content:center;">
+                    <div class="bento-card card-small reveal" style="text-align:center; justify-content:center;">
                         <div class="stat-number">10k+</div>
                         <p style="font-weight:600">Clienti Soddisfatti</p>
                     </div>
-                    <div class="bento-card card-small" style="text-align:center; justify-content:center;">
+                    <div class="bento-card card-small reveal" style="text-align:center; justify-content:center;">
                         <div class="stat-number">100%</div>
                         <p style="font-weight:600">Affidabilità</p>
                     </div>
@@ -82,44 +182,56 @@
             </div>
         </section>
 
-        <!-- Sezione Filosofia -->
+        <!-- Sezione Filosofia con Immagine Bella Grande -->
         <section class="history-section">
             <div class="container">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center;">
-                    <div class="image-glass">
-                        <img src="https://www.sgomberocatania.it/wp-content/uploads/2025/08/9e3f5166-ff50-47fc-be17-aa4e71bb1ab8.png" alt="Team Sgombero Catania al lavoro in ambiente pulito" loading="lazy" decoding="async" width="1200" height="675">
+                <div class="cinematic-container">
+                    
+                    <!-- Immagine a grandezza naturale (1200px) e responsiva -->
+                    <div class="image-glass-full reveal">
+                        <img src="https://www.sgomberocatania.it/wp-content/uploads/2025/08/9e3f5166-ff50-47fc-be17-aa4e71bb1ab8.png" 
+                             alt="Team Sgombero Catania al lavoro in ambiente pulito" 
+                             loading="lazy" 
+                             decoding="async" 
+                             width="1200" 
+                             height="675">
                     </div>
-                    <div>
+
+                    <div class="philosophy-text-block reveal">
                         <span class="apple-eyebrow">La Nostra Filosofia</span>
-                        <h2 style="font-size:2.5rem; margin-bottom:20px;">Trasparenza prima di tutto.</h2>
-                        <p style="margin-bottom:20px;">Molti cercano informazioni su "Sgombero Catania" per capire di chi fidarsi. Noi rispondiamo mettendoci la faccia.</p>
-                        <p>I nostri preventivi sono chiari, senza costi nascosti. Se troviamo oggetti di valore durante lo sgombero, il loro valore viene immediatamente scontato dal costo del servizio o pagato in contanti.</p>
+                        <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom:20px;">Trasparenza prima di tutto.</h2>
                         
-                        <div class="cta-minimal" style="text-align:left; margin-top:30px;">
-                            <a href="servizi.html" class="btn-apple">Scopri i nostri servizi</a>
+                        <div class="philosophy-details">
+                            <p>Molti cercano informazioni su <strong>"Sgombero Catania"</strong> per capire di chi fidarsi. Noi rispondiamo mettendoci la faccia. Ogni intervento è pianificato per ridurre lo stress del cliente, garantendo puntualità e massimo rispetto per gli ambienti trattati.</p>
+                            <p>I nostri preventivi sono chiari, senza costi nascosti. Se troviamo oggetti di valore durante lo sgombero, il loro valore viene immediatamente scontato dal costo del servizio o pagato in contanti, trasformando un onere in un'opportunità di guadagno.</p>
+                        </div>
+                        
+                        <div style="margin-top:40px;">
+                            <a href="servizi.html" class="cta-button call-btn" style="width:auto; display:inline-flex; padding: 16px 40px;">Scopri i nostri servizi</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
         <!-- Perché Sceglierci -->
-        <section class="section" style="padding-bottom:120px;">
+        <section class="section" style="padding-bottom:120px; background: var(--bg-surface-2);">
             <div class="container">
                 <h2 style="text-align:center; font-size:2.5rem; margin-bottom:60px;">Perché i catanesi ci scelgono</h2>
                 
-                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:40px;">
-                    <div style="padding:20px;">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:40px;">
+                    <div class="reveal" style="padding:20px;">
                         <h3 style="font-size:1.4rem; margin-bottom:10px;">Preventivi Gratuiti</h3>
-                        <p style="color:var(--text-muted)">Nessun impegno. Veniamo, valutiamo e ti diamo un prezzo fisso.</p>
+                        <p style="color:var(--text-secondary)">Nessun impegno. Veniamo, valutiamo e ti diamo un prezzo fisso che include smaltimento e manodopera.</p>
                     </div>
-                    <div style="padding:20px; border-left: 1px solid var(--border-color);">
+                    <div class="reveal" style="padding:20px; border-left: 1px solid var(--border);">
                         <h3 style="font-size:1.4rem; margin-bottom:10px;">Mezzi Propri</h3>
-                        <p style="color:var(--text-muted)">Disponiamo di camion, scale aeree e furgoni per ogni esigenza logistica.</p>
+                        <p style="color:var(--text-secondary)">Disponiamo di flotta dedicata: camion, scale aeree per piani alti e furgoni agili per il centro storico.</p>
                     </div>
-                    <div style="padding:20px; border-left: 1px solid var(--border-color);">
+                    <div class="reveal" style="padding:20px; border-left: 1px solid var(--border);">
                         <h3 style="font-size:1.4rem; margin-bottom:10px;">Pulizia Finale</h3>
-                        <p style="color:var(--text-muted)">Lasciamo i locali non solo vuoti, ma spazzati e in ordine.</p>
+                        <p style="color:var(--text-secondary)">Non lasciamo polvere o detriti. Il locale viene riconsegnato vuoto, spazzato e pronto per la nuova destinazione.</p>
                     </div>
                 </div>
             </div>
@@ -136,22 +248,24 @@
     <!-- Animazioni Semplici allo scroll -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = () => {
+                for (let i = 0; i < revealElements.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = revealElements[i].getBoundingClientRect().top;
+                    const elementVisible = 100;
+                    
+                    if (elementTop < windowHeight - elementVisible) {
+                        revealElements[i].classList.add('active');
                     }
-                });
-            }, { threshold: 0.1 });
+                }
+            };
 
-            document.querySelectorAll('.bento-card, .history-section > div > div').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)'; // Transizione fluida "Apple"
-                observer.observe(el);
-            });
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Controllo iniziale
         });
     </script>
 </body>
 </html>
+
