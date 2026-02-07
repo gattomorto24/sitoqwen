@@ -370,3 +370,82 @@ window.addEventListener('DOMContentLoaded', () => {
     initComponents();
 });
 
+/**
+ * GESTORE INTELLIGENTE DEL DISPOSITIVO E DEL TEMA
+ * Da inserire alla fine di script.js
+ * * Funzionalità:
+ * 1. Rilevamento OS: Windows, macOS, Linux, Android, iOS.
+ * 2. Rilevamento Piattaforma: Mobile vs Desktop.
+ * 3. Sincronizzazione real-time con le preferenze di sistema (Dark/Light).
+ */
+
+(function() {
+    const initDeviceIntelligence = () => {
+        const root = document.documentElement;
+        const ua = navigator.userAgent;
+
+        // --- 1. LOGICA DI RILEVAMENTO SISTEMA ---
+        let detectedOS = 'unknown';
+        let platformType = 'desktop';
+
+        // Controllo Piattaforma (Mobile vs Desktop)
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+            platformType = 'mobile';
+        }
+
+        // Controllo Sistema Operativo specifico
+        if (/Windows/i.test(ua)) {
+            detectedOS = 'windows';
+        } else if (/Android/i.test(ua)) {
+            detectedOS = 'android';
+            platformType = 'mobile';
+        } else if (/iPhone|iPad|iPod/i.test(ua)) {
+            detectedOS = 'ios';
+            platformType = 'mobile';
+        } else if (/Macintosh/i.test(ua)) {
+            detectedOS = 'macos';
+        } else if (/Linux/i.test(ua)) {
+            detectedOS = 'linux';
+        }
+
+        // Applica gli attributi al tag <html>
+        // Questi possono essere usati nel CSS così: html[data-os="ios"] .elemento { ... }
+        root.setAttribute('data-os', detectedOS);
+        root.setAttribute('data-platform', platformType);
+
+        // --- 2. SINCRONIZZAZIONE TEMA DI SISTEMA ---
+        const darkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        const syncThemeWithSystem = (e) => {
+            // Applichiamo il tema del sistema SOLO se non c'è una scelta manuale salvata in localStorage
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                root.setAttribute('data-theme', newTheme);
+                
+                // Aggiorna il meta tag theme-color per la UI dei browser mobile
+                const metaTheme = document.querySelector('meta[name="theme-color"]');
+                if (metaTheme) {
+                    metaTheme.setAttribute('content', newTheme === 'dark' ? '#0b0b0c' : '#ffffff');
+                }
+            }
+        };
+
+        // Ascolta i cambiamenti di tema del sistema (es. modalità notte automatica)
+        try {
+            darkMediaQuery.addEventListener('change', syncThemeWithSystem);
+        } catch (err) {
+            // Supporto per versioni più vecchie di Safari/Browser
+            darkMediaQuery.addListener(syncThemeWithSystem);
+        }
+
+        // Log tecnico per conferma (visibile solo in console sviluppatore)
+        console.log(`%c[DeviceManager] OS: ${detectedOS} | Platform: ${platformType}`, "color: #0071e3; font-weight: bold;");
+    };
+
+    // Esecuzione sicura al caricamento del DOM
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDeviceIntelligence);
+    } else {
+        initDeviceIntelligence();
+    }
+})();

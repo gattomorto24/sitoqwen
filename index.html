@@ -9,6 +9,10 @@
     <meta property="og:title" content="Sgombero Catania | Svuota Cantine e Appartamenti">
     <meta property="og:description" content="Professionisti dello sgombero a Catania e provincia. Preventivi gratuiti e immediati.">
     <meta property="og:url" content="https://sgombero-catania.it">
+    
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,14 +30,10 @@
     }
     </script>
     <meta name="theme-color" content="#ffffff">
-    <!-- Preconnect and preload for Google Fonts and critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- If using Google Fonts, add font-display: swap -->
-    <!-- Example: <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="style.css">
     <script>
-      // Apply saved or system-preferred theme ASAP to avoid flicker
       (function(){
         try{
           const stored = localStorage.getItem('theme');
@@ -45,7 +45,6 @@
         }catch(e){/* ignore */}
       })();
     </script>
-
 </head>
 <body>
     <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
@@ -57,11 +56,23 @@
             <div class="hero-subtitle" aria-hidden="true">Oltre 8 anni di esperienza</div>
             <h1>Sgomberi e Traslochi Professionali a Catania</h1>
             <p>Soluzioni rapide ed eco-sostenibili per liberare appartamenti, cantine, uffici e capannoni</p>
-            <a href="popup.html" class="cta-button" aria-label="Contatti Rapidi">
-                📞 Contatti Rapidi
-            </a>
+            
+            <div class="cta-stack">
+                <a href="tel:+393313434139" class="cta-button call-btn" aria-label="Chiama Ora">
+                    <span class="material-icons">call</span> Chiama Ora: 331 343 4139
+                </a>
+        
+                <a href="https://wa.me/393313434139?text=Ciao,%20vorrei%20informazioni%20per%20uno%20sgombero" 
+                   class="cta-button whatsapp-btn" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="Contatta su WhatsApp">
+                    <span class="material-icons">chat</span> Scrivici su WhatsApp
+                </a>
+            </div>
+
             <div class="whatsapp-badge">
-                🟢 Disponibili 7 giorni su 7 • 09:00 - 23:30
+                <span class="status-dot"></span> Disponibili 7 giorni su 7 • 09:00 - 23:30
                 <a href="blog.html" style="margin-left:12px;color:#0071e3;text-decoration:underline;font-weight:600;">Blog</a>
             </div>
         </div>
@@ -76,42 +87,42 @@
                 </div>
                 <div class="services-grid">
                     <div class="service-card ios-transition">
-                        <div class="service-icon" aria-hidden="true">🏠</div>
+                        <div class="service-icon"><span class="material-icons">home</span></div>
                         <div class="service-content">
                             <h3>Sgombero Appartamenti</h3>
                             <p>Svuotamento completo di abitazioni di qualsiasi metratura, con gestione professionale dello smaltimento di mobili ed oggetti ingombranti.</p>
                         </div>
                     </div>
                     <div class="service-card ios-transition">
-                        <div class="service-icon" aria-hidden="true">🗄️</div>
+                        <div class="service-icon"><span class="material-icons">inventory_2</span></div>
                         <div class="service-content">
                             <h3>Cantine e Garage</h3>
                             <p>Specializzazione nel liberare locali interrati o box auto spesso accumulati di oggetti inutilizzati, con massima attenzione ai dettagli.</p>
                         </div>
                     </div>
                     <div class="service-card ios-transition">
-                        <div class="service-icon" aria-hidden="true">🏢</div>
+                        <div class="service-icon"><span class="material-icons">business</span></div>
                         <div class="service-content">
                             <h3>Uffici e Locali Commerciali</h3>
                             <p>Interventi mirati per aziende e negozi, con la possibilità di operare in orari flessibili per non interrompere l'attività lavorativa.</p>
                         </div>
                     </div>
                     <div class="service-card ios-transition">
-                        <div class="service-icon" aria-hidden="true">📦</div>
+                        <div class="service-icon"><span class="material-icons">local_shipping</span></div>
                         <div class="service-content">
                             <h3>Traslochi Completi</h3>
                             <p>Servizio completo che include imballaggio professionale, trasporto sicuro e rimontaggio mobili nella nuova location.</p>
                         </div>
                     </div>
                     <div class="service-card ios-transition">
-                        <div class="service-icon" aria-hidden="true">🛋️</div>
+                        <div class="service-icon"><span class="material-icons">chair</span></div>
                         <div class="service-content">
                             <h3>Ritiro Mobili Usati</h3>
                             <p>Valutazione dell'usato con possibilità di sgombero gratuito qualora il valore dei mobili o degli oggetti recuperabili copra i costi di manodopera.</p>
                         </div>
                     </div>
                     <div class="service-card ios-transition">
-                        <div class="service-icon" aria-hidden="true">🏭</div>
+                        <div class="service-icon"><span class="material-icons">factory</span></div>
                         <div class="service-content">
                             <h3>Sgombero Capannoni</h3>
                             <p>Gestione professionale di grandi volumi o spazi angusti come soffitte e capannoni industriali, con attrezzature specializzate.</p>
@@ -162,17 +173,17 @@
                 </div>
                 <div class="strengths-grid">
                     <div class="strength-card ios-transition">
-                        <span class="strength-icon" aria-hidden="true">⏰</span>
+                        <span class="material-icons strength-icon">access_time</span>
                         <h3>Disponibilità 7/7</h3>
                         <p>Operativi tutti i giorni della settimana con orario continuato dalle 09:00 alle 23:30 per adattarci alle tue esigenze.</p>
                     </div>
                     <div class="strength-card ios-transition">
-                        <span class="strength-icon" aria-hidden="true">🌱</span>
+                        <span class="material-icons strength-icon">eco</span>
                         <h3>Eco-Sostenibilità</h3>
                         <p>Garanzia di conferimento dei materiali di scarto presso centri di raccolta autorizzati e discariche certificate, evitando l'abbandono di rifiuti.</p>
                     </div>
                     <div class="strength-card ios-transition">
-                        <span class="strength-icon" aria-hidden="true">💰</span>
+                        <span class="material-icons strength-icon">payments</span>
                         <h3>Preventivi Gratuiti</h3>
                         <p>Possibilità di richiedere sopralluoghi e quotazioni senza impegno, anche tramite contatti rapidi come WhatsApp.</p>
                     </div>
@@ -188,30 +199,30 @@
                 </div>
                 <div class="contact-container">
                     <div class="contact-info">
-                        <h3><span class="contact-icon" aria-hidden="true">📍</span> Sede Operativa</h3>
+                        <h3><span class="material-icons" style="vertical-align: middle; margin-right: 10px; color: var(--primary-color);">location_on</span> Sede Operativa</h3>
                         <div class="contact-detail">
-                            <div class="contact-icon" aria-hidden="true">🏢</div>
+                            <div class="contact-icon"><span class="material-icons">business</span></div>
                             <div class="contact-text">
                                 <h4>Indirizzo</h4>
                                 <p>Via Antonio Gramsci 5, Gravina di Catania (CT)</p>
                             </div>
                         </div>
                         <div class="contact-detail">
-                            <div class="contact-icon" aria-hidden="true">📱</div>
+                            <div class="contact-icon"><span class="material-icons">phone_iphone</span></div>
                             <div class="contact-text">
                                 <h4>Telefono/WhatsApp</h4>
                                 <a href="tel:+393497500613" aria-label="Chiama +39 349 75 00 613">+39 349 75 00 613</a>
                             </div>
                         </div>
                         <div class="contact-detail">
-                            <div class="contact-icon" aria-hidden="true">🕒</div>
+                            <div class="contact-icon"><span class="material-icons">schedule</span></div>
                             <div class="contact-text">
                                 <h4>Orari</h4>
                                 <p>Lunedì - Domenica: 09:00 - 23:30</p>
                             </div>
                         </div>
-                        <a href="https://wa.me/393497500613  " class="whatsapp-button" aria-label="Contattaci su WhatsApp">
-                            <span aria-hidden="true">💬</span> Scrivici su WhatsApp
+                        <a href="https://wa.me/393497500613" class="whatsapp-button" aria-label="Contattaci su WhatsApp">
+                            <span class="material-icons">chat</span> Scrivici su WhatsApp
                         </a>
                     </div>
                     <div class="contact-form">
@@ -250,7 +261,6 @@
     </main>
 
     <div id="main-footer"></div>
-
     <div id="popup-widget"></div>
     <script src="script.js" defer></script>
 </body>
