@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dove Operiamo - STR Trasporti</title>
+  <meta name="description" content="Sgomberi e traslochi in tutti i comuni della provincia di Catania. Servizio professionale, preventivi gratuiti, eco-sostenibilità e acquisto mobili. Lista completa comuni coperti.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Animazioni, card, lista dinamica, effetti curati -->
+  <style>
+    main#main-content > section {
+        text-align: center;
+        margin-bottom: 32px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .coverage-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 32px 0;
+        padding: 0;
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+    }
+    .coverage-list li {
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+        padding: 22px 36px;
+        font-size: 1.22rem;
+        font-weight: 700;
+        color: #1a237e;
+        margin: 0;
+        transition: transform 0.5s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, background 0.2s, color 0.2s;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(60px) scale(0.96);
+        text-align: center;
+        letter-spacing: 0.02em;
+    }
+    .coverage-list li:first-child {
+        background: rgba(33,150,243,0.18);
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(33,150,243,0.18), 0 1px 2px #000;
+    }
+    .coverage-list li:hover {
+        background: #e3f2fd;
+        color: #1976d2;
+        box-shadow: 0 12px 40px rgba(25,118,210,0.16);
+        transform: scale(1.09) translateY(-6px);
+    }
+    .section-title {
+        text-align: center;
+        margin-bottom: 36px;
+        padding: 40px 0 20px 0;
+        background: linear-gradient(135deg, #f8fafc 60%, #e3f2fd 100%);
+        border-radius: 28px;
+        box-shadow: 0 8px 40px rgba(25,118,210,0.12);
+        backdrop-filter: blur(6px);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #222;
+    }
+    @media (prefers-color-scheme: dark) {
+      .coverage-list li {
+        background: rgba(30,30,40,0.85);
+        color: #e3f2fd;
+      }
+      .coverage-list li:first-child {
+        background: linear-gradient(90deg,#1976d2 60%,#25d366 100%);
+        color: #fff;
+        text-shadow: 0 2px 8px #1976d2, 0 1px 2px #000;
+      }
+      .section-title {
+        background: linear-gradient(135deg, #23243a 60%, #1976d2 100%);
+        color: #e3f2fd;
+        text-shadow: 0 2px 8px #1976d2, 0 1px 2px #000;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      // Animazione dinamica lista
+      const items = document.querySelectorAll('.coverage-list li');
+      items.forEach((el,i)=>{
+        setTimeout(()=>{
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0) scale(1)';
+        }, 60*i);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="main-header"></div>
+  <main id="main-content">
+    <section class="section-title">
+      <h1>Dove Operiamo</h1>
+      <p>STR Trasporti offre <strong>sgomberi, traslochi e acquisto mobili</strong> in tutta la provincia di Catania. Copriamo ogni comune con rapidità, professionalità e attenzione all'ambiente.</p>
+      <a href="https://www.sgomberocatania.it" class="cta-button" target="_blank" rel="noopener">Visita il sito principale</a>
+    </section>
+    <section>
+      <h2>Comuni coperti</h2>
+      <ul class="coverage-list">
+        <li>Catania</li>
+        <li>Acireale</li>
+        <li>Misterbianco</li>
+        <li>Paternò</li>
+        <li>Belpasso</li>
+        <li>Gravina di Catania</li>
+        <li>Mascalucia</li>
+        <li>San Giovanni La Punta</li>
+        <li>Tremestieri Etneo</li>
+        <li>Aci Castello</li>
+        <li>Caltagirone</li>
+        <li>Adrano</li>
+        <li>Biancavilla</li>
+        <li>Riposto</li>
+        <li>Giarre</li>
+        <li>Palagonia</li>
+        <li>Randazzo</li>
+        <li>Bronte</li>
+        <li>Santa Maria di Licodia</li>
+        <li>San Pietro Clarenza</li>
+        <li>Pedara</li>
+        <li>Trecastagni</li>
+        <li>San Gregorio di Catania</li>
+        <li>Valverde</li>
+        <li>Viagrande</li>
+        <li>Fiumefreddo di Sicilia</li>
+        <li>Calatabiano</li>
+        <li>Castiglione di Sicilia</li>
+        <li>Maletto</li>
+        <li>Santa Venerina</li>
+        <li>Camporotondo Etneo</li>
+        <li>Motta Sant'Anastasia</li>
+        <li>Licodia Eubea</li>
+        <li>Mineo</li>
+        <li>Vizzini</li>
+        <li>Scordia</li>
+        <li>Linguaglossa</li>
+        <li>Belpasso</li>
+        <li>Mirabella Imbaccari</li>
+        <li>Ramacca</li>
+        <li>Castel di Iudica</li>
+        <li>Raddusa</li>
+        <li>Santa Maria di Licodia</li>
+        <li>Biancavilla</li>
+        <li>Adrano</li>
+        <li>Palagonia</li>
+        <li>Scordia</li>
+        <li>Mineo</li>
+        <li>Vizzini</li>
+        <li>Licodia Eubea</li>
+        <li>Mirabella Imbaccari</li>
+        <li>Raddusa</li>
+        <li>Castel di Iudica</li>
+        <li>Ramacca</li>
+        <li>Santa Maria di Licodia</li>
+        <li>Biancavilla</li>
+        <li>Adrano</li>
+      </ul>
+      <p>Se il tuo comune non è in lista, <a href="contatti.html">contattaci</a>: copriamo tutta la provincia!</p>
+    </section>
+    <section>
+      <h2>Servizio Sgombero e Traslochi</h2>
+      <p>Il nostro servizio di sgombero è <strong>gratuito in cambio di merce recuperabile</strong>. In alternativa, offriamo preventivi rapidi: basta inviarci le foto su <a href="https://wa.me/393497500613" target="_blank" rel="noopener">WhatsApp</a>. Operiamo con mezzi propri, personale qualificato e smaltimento eco-sostenibile.</p>
+      <a href="servizi.html" class="cta-button">Scopri tutti i servizi</a>
+    </section>
+    <section>
+      <h2>Acquisto Mobili</h2>
+      <p>Acquistiamo mobili usati con <strong>pagamento immediato</strong>. Valutiamo ogni proposta e ritiriamo direttamente a domicilio. <a href="acquisto-mobili.html">Scopri come funziona</a>.</p>
+    </section>
+  </main>
+  <div id="main-footer"></div>
+  <div id="popup-widget"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

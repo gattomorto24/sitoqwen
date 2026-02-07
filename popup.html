@@ -1,171 +1,145 @@
-.popup-menu-ios .popup-cancel:hover {
-    background: #ff3b30;
-    color: #fff;
-}
+<!-- Popup iOS-style Action Sheet con trigger e link -->
+<!-- Miglioramento stile menu action sheet con icone Material, senza sottolineature, hover visibile -->
 <style>
-.popup-float{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--whatsapp-start),var(--whatsapp-end));color:var(--white);box-shadow:0 10px 30px rgba(2,6,23,.12);z-index:12000;transition:transform .18s ease,box-shadow .18s ease}
-.popup-float:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(2,6,23,.18)}
-.popup-float svg{width:36px;height:36px;display:block}
-.popup-menu{position:fixed;right:20px;bottom:90px;width:320px;max-width:90vw;background:var(--surface);border-radius:18px;box-shadow:0 8px 32px rgba(2,6,23,.18);padding:24px 18px;display:none;flex-direction:column;gap:18px;z-index:12001;}
-.popup-menu.active{display:flex;}
-.popup-menu button,.popup-menu a{font-size:1.15rem;padding:14px 18px;border-radius:12px;border:none;background:var(--muted);color:var(--primary);text-align:left;display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s;}
-.popup-menu button:hover,.popup-menu a:hover{background:var(--primary);color:#fff;}
-.popup-menu .popup-cancel{background:var(--surface-2);color:var(--text-dark);}
-</style>
-<style>
-.popup-float-ios {
+.popup-action-sheet {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(90deg,#25d366,#128C7E);
-    color: #fff;
-    box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E;
-    z-index: 12000;
-    animation: glowPulse 2.2s infinite ease-in-out;
-}
-@keyframes glowPulse {
-    0% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
-    50% { box-shadow: 0 0 48px 16px #25d366, 0 0 16px 4px #128C7E; }
-    100% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
-}
-.popup-float-ios svg {
-    width: 36px;
-    height: 36px;
-    display: block;
-}
-.bubble-group .bubble {
-    animation: bubbleMove 2.5s infinite alternate;
-}
-@keyframes bubbleMove {
-    0% { opacity: 0.7; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(-8px); }
-    100% { opacity: 0.7; transform: translateY(0); }
-}
-.popup-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.18);
-    z-index: 12001;
-    display: none;
-}
-.popup-overlay.active {
-    display: block;
-}
-.popup-menu-ios {
-    position: fixed;
-    left: 50%;
+    left: 0;
+    right: 0;
     bottom: 0;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 420px;
+    z-index: 12000;
     background: #fff;
-    border-radius: 24px 24px 0 0;
-    box-shadow: 0 8px 32px rgba(2,6,23,.18);
-    padding: 32px 18px 18px 18px;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -4px 32px rgba(0,0,0,0.12);
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 0 12px 0;
     display: none;
     flex-direction: column;
-    gap: 18px;
-    z-index: 12002;
+    align-items: stretch;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.popup-menu-ios.active {
-    display: flex;
+.popup-action-sheet-title {
+    color: #888;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 500;
 }
-.popup-menu-ios .popup-btn {
-    font-size: 1.25rem;
-    padding: 18px 18px;
-    border-radius: 14px;
+.popup-action-sheet-btn {
+    background: #fff;
     border: none;
-    background: #f2f2f7;
-    color: #0071e3;
-    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    color: #007aff;
+    padding: 18px 0;
+    text-align: center; /* centrato */
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
     display: flex;
     align-items: center;
     gap: 16px;
-    cursor: pointer;
+    outline: none;
     text-decoration: none;
-    transition: background .2s,color .2s;
+    justify-content: center; /* centrato */
+}
+.popup-action-sheet-btn:last-child {
+    border-bottom: none;
+}
+.popup-action-sheet-btn:hover, .popup-action-sheet-btn:focus {
+    background: #e3f2fd;
+    color: #0056b3;
+}
+.popup-action-sheet-btn .material-icon {
+    font-family: 'Material Icons';
+    font-size: 24px;
+    color: #007aff;
+    vertical-align: middle;
+    transition: color 0.2s;
+}
+.popup-action-sheet-btn:hover .material-icon {
+    color: #0056b3;
+}
+.popup-action-sheet-cancel {
+    background: #fff;
+    color: #ff3b30;
+    font-size: 20px;
     font-weight: 600;
+    border-radius: 0 0 18px 18px;
+    margin-top: 8px;
+    padding: 18px 0;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+    transition: background 0.2s;
 }
-.popup-menu-ios .popup-btn:hover {
-    background: #0071e3;
-    color: #fff;
+.popup-action-sheet-cancel:hover {
+    background: #ffe5e0;
 }
-.popup-menu-ios .popup-cancel {
-    background: #f8f9fa;
-    color: #1c1c1e;
-    margin-top: 12px;
-    font-weight: 500;
+.popup-float-minimal {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(2,6,23,0.18);
+    z-index: 12001;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
-.popup-menu-ios .popup-cancel:hover {
-    background: #ff3b30;
-    color: #fff;
+.popup-float-minimal:hover {
+    box-shadow: 0 8px 32px rgba(2,6,23,0.28);
+    transform: scale(1.08);
 }
+.popup-float-minimal svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 </style>
-<div class="popup-float-ios" id="popupBtnIOS" title="Contatti Rapidi" aria-label="Apri menu contatti rapidi">
-        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="32" r="32" fill="#25d366"/>
-                <g>
-                        <rect x="22" y="18" width="20" height="28" rx="6" fill="#fff" stroke="#128C7E" stroke-width="2"/>
-                        <rect x="28" y="24" width="8" height="16" rx="2" fill="#25d366"/>
-                        <circle cx="32" cy="46" r="2" fill="#128C7E"/>
-                </g>
-                <g class="bubble-group">
-                        <circle class="bubble" cx="50" cy="14" r="4" fill="#fff" opacity="0.7"/>
-                        <circle class="bubble" cx="56" cy="24" r="3" fill="#fff" opacity="0.5"/>
-                        <circle class="bubble" cx="44" cy="8" r="2" fill="#fff" opacity="0.4"/>
-                </g>
-        </svg>
+<div class="popup-float-minimal" id="popupTrigger" title="Apri menu contatti" aria-label="Apri menu contatti">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#25d366"/>
+        <g>
+            <rect x="22" y="18" width="20" height="28" rx="6" fill="#fff" stroke="#128C7E" stroke-width="2"/>
+            <rect x="28" y="24" width="8" height="16" rx="2" fill="#25d366"/>
+            <circle cx="32" cy="46" r="2" fill="#128C7E"/>
+        </g>
+    </svg>
 </div>
-<div class="popup-overlay" id="popupOverlay"></div>
-<div class="popup-menu-ios" id="popupMenuIOS" aria-modal="true" role="dialog">
-        <a href="https://wa.me/393497500613" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp" class="popup-btn"><span class="material-icons">chat</span> WhatsApp</a>
-        <a href="tel:393497500613" aria-label="Chiama STR Trasporti" class="popup-btn"><span class="material-icons">call</span> Chiama</a>
-        <a href="https://www.sgomberocatania.it" target="_blank" rel="noopener" aria-label="Visita il sito principale" class="popup-btn"><span class="material-icons">public</span> Visita il nostro sito principale</a>
-        <button class="popup-btn popup-cancel" id="popupCancelIOS">Annulla</button>
+<div class="popup-action-sheet" id="popupActionSheet">
+    <div class="popup-action-sheet-title">Contatti rapidi</div>
+    <a class="popup-action-sheet-btn" href="https://wa.me/393497500613" target="_blank" rel="noopener">
+        <span class="material-icon">chat</span> WhatsApp
+    </a>
+    <a class="popup-action-sheet-btn" href="tel:+393497500613">
+        <span class="material-icon">call</span> Chiama
+    </a>
+    <a class="popup-action-sheet-btn" href="https://sgombero-catania.it" target="_blank" rel="noopener">
+        <span class="material-icon">language</span> Visita il sito
+    </a>
+    <button class="popup-action-sheet-cancel" id="popupActionCancel">Cancel</button>
 </div>
-        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="32" r="32" fill="#25d366"/>
-                <g>
-                        <rect x="22" y="18" width="20" height="28" rx="6" fill="#fff" stroke="#128C7E" stroke-width="2"/>
-                        <rect x="28" y="24" width="8" height="16" rx="2" fill="#25d366"/>
-                        <circle cx="32" cy="46" r="2" fill="#128C7E"/>
-                </g>
-                <g class="bubble-group">
-                        <circle class="bubble" cx="50" cy="14" r="4" fill="#fff" opacity="0.7"/>
-                        <circle class="bubble" cx="56" cy="24" r="3" fill="#fff" opacity="0.5"/>
-                        <circle class="bubble" cx="44" cy="8" r="2" fill="#fff" opacity="0.4"/>
-                </g>
-        </svg>
-</div>
-<style>
-.glow-phone {
-    box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E;
-    animation: glowPulse 2.2s infinite ease-in-out;
-}
-@keyframes glowPulse {
-    0% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
-    50% { box-shadow: 0 0 48px 16px #25d366, 0 0 16px 4px #128C7E; }
-    100% { box-shadow: 0 0 32px 8px #25d366, 0 0 8px 2px #128C7E; }
-}
-.bubble-group .bubble {
-    animation: bubbleMove 2.5s infinite alternate;
-}
-@keyframes bubbleMove {
-    0% { opacity: 0.7; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(-8px); }
-    100% { opacity: 0.7; transform: translateY(0); }
-}
-</style>
-<div class="popup-overlay" id="popupOverlay"></div>
-<div class="popup-menu-ios" id="popupMenuIOS" aria-modal="true" role="dialog">
-    <a href="https://wa.me/393497500613" target="_blank" rel="noopener" aria-label="Contatta su WhatsApp" class="popup-btn"><span class="material-icons">chat</span> WhatsApp</a>
-    <a href="tel:393497500613" aria-label="Chiama STR Trasporti" class="popup-btn"><span class="material-icons">call</span> Chiama</a>
-    <a href="https://www.sgomberocatania.it" target="_blank" rel="noopener" aria-label="Visita il sito principale" class="popup-btn"><span class="material-icons">public</span> Visita il nostro sito principale</a>
-    <button class="popup-btn popup-cancel" id="popupCancelIOS">Annulla</button>
-</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const trigger = document.getElementById('popupTrigger');
+    const sheet = document.getElementById('popupActionSheet');
+    const cancel = document.getElementById('popupActionCancel');
+    trigger.addEventListener('click', function(){
+        sheet.style.display = 'flex';
+    });
+    cancel.addEventListener('click', function(){
+        sheet.style.display = 'none';
+    });
+    document.addEventListener('click', function(e) {
+        if (!sheet.contains(e.target) && !trigger.contains(e.target)) {
+            sheet.style.display = 'none';
+        }
+    });
+});
+</script>

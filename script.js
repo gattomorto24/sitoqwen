@@ -31,50 +31,65 @@ async function initComponents() {
         loadComponent('popup-widget', 'popup.html')
     ]);
 
-    // Ensure fonts loaded before expensive paint
-    if (document.fonts && document.fonts.ready) {
-        try { await document.fonts.ready; document.documentElement.classList.add('fonts-loaded'); } catch (e) {/* ignore */}
-    }
+        if (document.fonts && document.fonts.ready) {
+            try { await document.fonts.ready; document.documentElement.classList.add('fonts-loaded'); } catch (e) {}
+        }
 
-    // Apply theme (header was injected above) and initialize toggle
     applyTheme(getPreferredTheme());
     initThemeToggle();
 
     initUI();
-
     // Popup menu logic (nuovo stile iOS)
     setTimeout(() => {
         const popupBtn = document.getElementById('popupBtnIOS');
         const popupMenu = document.getElementById('popupMenuIOS');
         const popupCancel = document.getElementById('popupCancelIOS');
         const popupOverlay = document.getElementById('popupOverlay');
-            if (popupBtn && popupMenu && popupOverlay && popupCancel) {
+        if (popupBtn && popupMenu && popupOverlay && popupCancel) {
             popupBtn.addEventListener('click',()=>{
                 popupMenu.classList.add('active');
                 popupOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
-        }
-        if (popupCancel && popupMenu && popupOverlay) {
             popupCancel.addEventListener('click',()=>{
                 popupMenu.classList.remove('active');
                 popupOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
-        }
-        if (popupOverlay && popupMenu) {
             popupOverlay.addEventListener('click',()=>{
                 popupMenu.classList.remove('active');
                 popupOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
-        }
-            // Chiudi menu con ESC
-            document.addEventListener("keydown", function(e) {
-                if (popupMenu.classList.contains("active") && (e.key === "Escape" || e.key === "Esc")) {
-                    popupMenu.classList.remove("active");
-                    popupOverlay.classList.remove("active");
-                    document.body.style.overflow = "";
+            document.addEventListener('keydown', function(e) {
+                if (popupMenu.classList.contains('active') && (e.key === 'Escape' || e.key === 'Esc')) {
+                    popupMenu.classList.remove('active');
+                    popupOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
+        }
     }, 300);
+
+    // Logica popup action sheet iOS-style
+    setTimeout(() => {
+        const trigger = document.getElementById('popupTrigger');
+        const sheet = document.getElementById('popupActionSheet');
+        const cancel = document.getElementById('popupActionCancel');
+        if (trigger && sheet && cancel) {
+            trigger.addEventListener('click', function(){
+                sheet.style.display = 'flex';
+            });
+            cancel.addEventListener('click', function(){
+                sheet.style.display = 'none';
+            });
+            document.addEventListener('click', function(e) {
+                if (!sheet.contains(e.target) && !trigger.contains(e.target)) {
+                    sheet.style.display = 'none';
+                }
+            });
+        }
+    }, 500);
 }
 
 // Theme handling
