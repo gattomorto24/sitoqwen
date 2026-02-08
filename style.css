@@ -89,7 +89,7 @@
 /* --- OLED Dark Theme --- */
 html[data-theme='dark'],
 :root[data-theme='dark'] {
-  --primary: #4aa3ff;
+  --primary: #87b4e0;
   --primary-dark: #3385ff;
   --secondary: #30d158;
   --antique-gold: #c9a566;
