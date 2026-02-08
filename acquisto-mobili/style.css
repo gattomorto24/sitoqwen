@@ -237,6 +237,70 @@ nav {
   border-radius: 2px;
 }
 
+/* Dropdown Menu Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown-toggle::after {
+  content: '▼';
+  font-size: 0.6em;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  padding: 10px 0;
+  min-width: 220px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  margin: 0 8px;
+  border-radius: 6px;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--muted);
+  color: var(--primary);
+  padding-left: 25px;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
