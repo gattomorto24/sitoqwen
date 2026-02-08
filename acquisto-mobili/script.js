@@ -339,6 +339,49 @@ function initGlobalBehaviors() {
         btn.addEventListener('click', toggle);
         btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
     });
+    
+    // Dropdown menu functionality for mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            // Only on mobile, prevent default link behavior and toggle dropdown
+            if (window.innerWidth <= 1000) {
+                e.preventDefault();
+                const dropdown = this.parentElement;
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                // Close other open dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current dropdown
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1000) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+    });
+    
+    // Update dropdown behavior on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1000) {
+            // On desktop, remove active classes and ensure hover works
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    });
 
     // Reveal-on-scroll using IntersectionObserver with stagger support
     (function(){
