@@ -1,0 +1,244 @@
+/* FOOTER STYLESHEET - STR TRASPORTI 
+    Design: Apple Style / OLED Optimized 
+*/
+
+:root {
+    --f-primary: #0071e3;
+    --f-text-light: #1d1d1f;
+    --f-text-muted: #86868b;
+    --f-bg-light: #f5f5f7;
+    --f-border-light: rgba(0, 0, 0, 0.1);
+}
+
+/* OLED Dark Mode Support */
+[data-theme='dark'] .apple-footer {
+    --f-text-light: #f5f5f7;
+    --f-text-muted: #a1a1a6;
+    --f-bg-light: #000000; /* Nero Assoluto OLED */
+    --f-border-light: rgba(255, 255, 255, 0.12);
+}
+
+.apple-footer {
+    background-color: var(--f-bg-light);
+    color: var(--f-text-light);
+    padding: 80px 0 30px;
+    border-top: 1px solid var(--f-border-light);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    transition: background-color 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Branding Column */
+.brand-col .footer-logo {
+    margin-bottom: 24px;
+    height: 42px;
+}
+
+.brand-col img { 
+    height: 100%; 
+    width: auto; 
+    transition: opacity 0.3s ease;
+}
+
+.footer-bio {
+    color: var(--f-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 280px;
+}
+
+.social-links { 
+    display: flex; 
+    gap: 16px; 
+}
+
+.social-icon {
+    color: var(--f-text-muted);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon:hover { 
+    color: var(--f-primary); 
+    transform: translateY(-3px); 
+}
+
+/* Titles and Navigation */
+.footer-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: var(--f-text-light);
+}
+
+.footer-links { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0;
+}
+
+.footer-links li { 
+    margin-bottom: 12px; 
+}
+
+.footer-links a {
+    color: var(--f-text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--f-primary);
+    transform: translateX(4px);
+}
+
+/* Contact Details */
+.footer-contact-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0;
+}
+
+.footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    color: var(--f-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.footer-contact-list li span.material-icons {
+    font-size: 20px;
+    color: var(--f-primary);
+    flex-shrink: 0;
+}
+
+.footer-contact-list a { 
+    color: inherit; 
+    text-decoration: none; 
+    transition: color 0.2s; 
+}
+
+.footer-contact-list a:hover { 
+    color: var(--f-primary); 
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid var(--f-border-light);
+}
+
+.bottom-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright { 
+    color: var(--f-text-muted); 
+    font-size: 0.8rem; 
+}
+
+.legal-links { 
+    display: flex; 
+    gap: 24px; 
+}
+
+.legal-links a {
+    color: var(--f-text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+}
+
+.legal-links a:hover { 
+    color: var(--f-primary); 
+}
+
+/* Theme Visibility Management */
+[data-theme='dark'] .logo-light-mode { display: none; }
+[data-theme='dark'] .logo-dark-mode { display: block; }
+.logo-light-mode { display: block; }
+.logo-dark-mode { display: none; }
+
+/* --- ANIMATIONS --- */
+.apple-footer .footer-column {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-footer.animate-in .footer-column {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered Delay for Columns */
+.apple-footer.animate-in .footer-column:nth-child(1) { transition-delay: 0.05s; }
+.apple-footer.animate-in .footer-column:nth-child(2) { transition-delay: 0.15s; }
+.apple-footer.animate-in .footer-column:nth-child(3) { transition-delay: 0.25s; }
+.apple-footer.animate-in .footer-column:nth-child(4) { transition-delay: 0.35s; }
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 640px) {
+    .apple-footer { padding: 60px 0 40px; }
+    .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+        text-align: center;
+    }
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .bottom-wrap { 
+        justify-content: center; 
+        text-align: center; 
+    }
+    .legal-links { 
+        justify-content: center; 
+        width: 100%; 
+    }
+    .brand-col .footer-bio { 
+        max-width: 100%; 
+    }
+    .footer-contact-list li {
+        justify-content: center;
+    }
+}
