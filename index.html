@@ -11,9 +11,16 @@
     <meta property="og:description" content="Professionisti dello sgombero a Catania e provincia. Preventivi gratuiti e immediati.">
     <meta property="og:url" content="https://sgombero-catania.it">
     
-    <!-- Material Icons CDN -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <!-- Material Icons CDN non-blocking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></noscript>
+
+    <!-- CSS principale non-blocking -->
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -31,8 +38,7 @@
     }
     </script>
     <meta name="theme-color" content="#ffffff">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="style.css">
     <script>
       (function(){
@@ -50,7 +56,61 @@
 <body>
     <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
     
-    <div id="main-header" class="header-placeholder" aria-hidden="true"></div>
+    <header id="main-header" class="site-header" role="banner">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="Sgomberi e Recupero - Homepage">
+                <picture>
+                    <source srcset="assets/logo-dark.webp" type="image/webp">
+                    <img class="logo-img" src="assets/logo-dark.png" alt="Sgomberi e Recupero" width="180" height="44" decoding="async" loading="eager" data-light-src="assets/logo-dark.png" data-dark-src="assets/logo-white.png">
+                </picture>
+            </a>
+
+            <div class="brand-title" aria-hidden="true">STR Trasporti</div>
+
+            <nav class="nav-desktop" role="navigation" aria-label="Navigazione principale">
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="servizi.html">Servizi</a></li>
+                    <li><a class="nav-link" href="acquisto-mobili.html">Acquisto Mobili</a></li>
+                    <li><a class="nav-link" href="contatti.html">Contatti</a></li>
+                    <li><a class="nav-link" href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a class="nav-link" href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions" role="group" aria-label="Azioni intestazione">
+                <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Cambia tema">
+                    <span class="material-icons" aria-hidden="true">dark_mode</span>
+                </button>
+                <a class="header-cta" href="tel:+393497500613" aria-label="Chiama STR Trasporti al 3497500613">
+                    <span class="material-icons" aria-hidden="true">call</span>
+                    <span class="cta-text">Chiama</span>
+                </a>
+                <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Apri menu">
+                    <span class="material-icons" aria-hidden="true">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="false">
+            <nav role="navigation" aria-label="Menu mobile">
+                <ul class="mobile-menu-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="servizi.html">Servizi</a></li>
+                    <li><a href="dove-operiamo.html">Dove Operiamo</a></li>
+                    <li><a href="acquisto-mobili.html">Acquisto Mobili</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li style="margin-top: 30px;">
+                        <a href="popup.html" style="color: var(--whatsapp-start); display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <span class="material-icons">chat</span> Scrivici su WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <section class="hero">
         <div class="container hero-content">
@@ -87,7 +147,7 @@
                     <p>Soluzioni complete per privati e aziende con smaltimento responsabile dei materiali</p>
                 </div>
                 <div class="services-grid">
-                    <div class="service-card ios-transition">
+                    <div class="service-card ios-transition reveal-on-scroll">
                         <div class="service-icon"><span class="material-icons">home</span></div>
                         <div class="service-content">
                             <h3>Sgombero Appartamenti</h3>
@@ -263,6 +323,14 @@
 
     <div id="main-footer"></div>
     <div id="popup-widget"></div>
+
+    <a class="wa-float" href="https://wa.me/393497500613" target="_blank" rel="noopener noreferrer" aria-label="Chatta su WhatsApp">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.868-2.03-.967-.273-.098-.472-.148-.672.149-.198.297-.768.967-.942 1.167-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.478-.883-.786-1.48-1.755-1.653-2.052-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.173.199-.297.298-.497.099-.198.05-.372-.025-.521-.075-.149-.672-1.617-.921-2.214-.242-.579-.487-.5-.672-.51-.173-.008-.372-.01-.57-.01-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.305 1.262.487 1.694.623.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.291.173-1.414-.074-.124-.273-.198-.57-.347z" fill="currentColor" />
+        <path d="M12.004 2.004C6.486 2.004 2 6.49 2 12.004c0 1.998.522 3.846 1.43 5.44L2 22l4.696-1.4c1.537.833 3.29 1.34 5.308 1.34 5.518 0 10.002-4.486 10.002-10.002S17.522 2.004 12.004 2.004zM12.004 19.984c-1.87 0-3.6-.59-5.048-1.596l-.361-.23-2.782.83.858-2.715-.235-.358C3.11 14.479 2.6 13.007 2.6 12.004c0-4.11 3.346-7.456 7.404-7.456 4.06 0 7.404 3.346 7.404 7.456 0 4.11-3.345 7.524-7.404 7.524z" fill="currentColor" />
+      </svg>
+    </a>
+
     <script src="script.js" defer></script>
 </body>
 

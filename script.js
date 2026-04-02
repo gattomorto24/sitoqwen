@@ -25,8 +25,13 @@ async function loadComponent(elementId, filePath) {
 
 // Inizializza funzionalità globali dopo il caricamento dei componenti
 async function initComponents() {
+    const mainHeader = document.getElementById('main-header');
+    const headerPromise = (mainHeader && mainHeader.innerHTML.trim())
+        ? Promise.resolve(true)
+        : loadComponent('main-header', 'header.html');
+
     await Promise.all([
-        loadComponent('main-header', 'header.html'),
+        headerPromise,
         loadComponent('main-footer', 'footer.html'),
         loadComponent('popup-widget', 'popup.html')
     ]);
@@ -154,8 +159,13 @@ function initUI() {
 }
 
 function initHeader() {
-    const header = document.querySelector('header');
-    if (!header) return;
+    // header può essere iniettato in #main-header o presente direttamente
+    let header = document.querySelector('#main-header > header');
+    if (!header) header = document.querySelector('header');
+    if (!header) {
+        console.warn('Header non trovato durante initHeader');
+        return;
+    }
 
     const hamburger = header.querySelector('#hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -166,8 +176,12 @@ function initHeader() {
         const currentPage = (window.location.pathname.split('/').pop() || 'index.html');
         header.querySelectorAll('.nav-menu a, .mobile-menu-list a').forEach(link => {
             link.classList.remove('active');
+            link.removeAttribute('aria-current');
             const href = link.getAttribute('href');
-            if (href && (href === currentPage || href.endsWith(currentPage))) link.classList.add('active');
+            if (href && (href === currentPage || href.endsWith(currentPage))) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
         });
     } catch (e) {}
 
@@ -253,6 +267,25 @@ function initHeader() {
 }
 
 function initGlobalBehaviors() {
+    // Reveal and skeleton activation
+    document.querySelectorAll('.service-card, .service-card-apple, .hero-content, .cta-stack').forEach(el => el.classList.add('reveal-on-scroll'));
+
+    // City badge keyboard accessibility (punti Accessibilità e Best Practices)
+    document.querySelectorAll('.city-badge').forEach(badge => {
+        badge.setAttribute('role', 'button');
+        badge.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                badge.click();
+            }
+        });
+    });
+
+    document.querySelectorAll('img.skeleton-img').forEach(img => {
+        if (img.complete) img.classList.add('loaded');
+        img.addEventListener('load', () => img.classList.add('loaded'));
+    });
+
     // Smooth scroll for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -272,24 +305,55 @@ function initGlobalBehaviors() {
     });
 
     // Efficient scroll handler using rAF
-    const header = document.querySelector('header');
-    let lastY = 0, ticking = false;
+    let header = document.querySelector('#main-header > header');
+    if (!header) header = document.querySelector('header');
+    let lastY = window.scrollY || 0;
+    let previousY = lastY;
+    let ticking = false;
     window.addEventListener('scroll', () => {
         lastY = window.scrollY;
         if (!ticking) { window.requestAnimationFrame(() => { handleScroll(lastY); ticking = false; }); }
         ticking = true;
     }, { passive: true });
+    
+    if (!header) {
+        console.warn('Header non trovato in initGlobalBehaviors scroll handler');
+    }
+
+    let isCompressed = false;
+    const compressThreshold = 48;  // scroll down threshold per comprimere
+    const uncompressThreshold = 18; // scroll up threshold per tornare normale
+
+    function applyCompressed() {
+        header.classList.add('scrolled', 'header--compressed');
+        header.style.boxShadow = '0 8px 30px rgba(2,6,23,.06)';
+        header.style.padding = '0 8px';
+        isCompressed = true;
+    }
+    function applyNormal() {
+        header.classList.remove('scrolled', 'header--compressed');
+        header.style.boxShadow = '';
+        header.style.padding = '';
+        isCompressed = false;
+    }
 
     function handleScroll(y) {
         if (!header) return;
-        if (y > 40) {
-            header.classList.add('scrolled');
-            header.style.boxShadow = '0 8px 30px rgba(2,6,23,.06)';
-        } else {
-            header.classList.remove('scrolled');
-            header.style.boxShadow = '';
+
+        const delta = y - previousY;
+
+        if (y >= compressThreshold && delta > 0) {
+            if (!isCompressed) applyCompressed();
+        } else if ((delta < -10 && isCompressed) || y <= uncompressThreshold) {
+            applyNormal();
         }
+
+        // Conserva lo stato attuale nei valori intermedi, fintanto che lo scroll non supera le soglie
+        previousY = y;
     }
+
+    // Initial state
+    handleScroll(window.scrollY);
 
     // Skip link
     const skipLink = document.querySelector('.skip-link');
@@ -307,8 +371,14 @@ function initGlobalBehaviors() {
         inquiryForm.addEventListener('submit', e => {
             e.preventDefault();
             const name = document.getElementById('name') ? document.getElementById('name').value : '';
-            // Ideally this would call an API; keep friendly UX now
-            alert(`Grazie ${name} per averci contattato! Ti risponderemo al più presto.`);
+            // Ideally this would call un API; keep friendly UX now
+            const msg = document.createElement('div');
+            msg.className = 'form-feedback';
+            msg.setAttribute('role', 'status');
+            msg.setAttribute('aria-live', 'polite');
+            msg.textContent = `Grazie ${name || 'Cliente'} per averci contattato! Ti risponderemo al più presto.`;
+            inquiryForm.appendChild(msg);
+            setTimeout(() => { msg.remove(); }, 3500);
             inquiryForm.reset();
         });
     }
