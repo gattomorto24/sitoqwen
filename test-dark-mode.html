@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dark Mode - SgomberoPRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg-glass:rgba(255,255,255,0.85);--bg-glass-dark:rgba(28,28,30,0.85);--glass-border:rgba(0,0,0,0.1);--glass-border-dark:rgba(255,255,255,0.1);--accent:#007bff;--text:#1d1d1f;--text-light:#6e6e73;--body-bg:#f5f5f7;--blur-strength:12px}
+        [data-theme="dark"]{--bg-glass:var(--bg-glass-dark);--glass-border:var(--glass-border-dark);--text:#f5f5f7;--text-light:#a1a1a6;--body-bg:#0d0d0e}
+        body{margin:0;font-family:'Inter',sans-serif;background:var(--body-bg);color:var(--text);transition:background 0.3s,color 0.3s}
+        .glass-nav{position:sticky;top:0;z-index:1000;background:var(--bg-glass);backdrop-filter:blur(var(--blur-strength));-webkit-backdrop-filter:blur(var(--blur-strength));border-bottom:1px solid var(--glass-border);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center}
+        .brand-title{font-size:1.5rem;font-weight:700;color:var(--text)}
+        .brand-title strong{color:var(--accent)}
+        .theme-toggle{background:transparent;border:none;cursor:pointer;padding:0.5rem;border-radius:50%;color:var(--text)}
+        .nav-menu{display:flex;list-style:none;gap:2rem}
+        .nav-link{color:var(--text);text-decoration:none}
+        .btn-cta{background:var(--accent);color:#fff;padding:0.625rem 1.25rem;border-radius:8px;text-decoration:none}
+        .test-section{padding:4rem 5%;max-width:1200px;margin:0 auto}
+        .card{background:var(--bg-glass);border:1px solid var(--glass-border);border-radius:16px;padding:2rem;margin:1rem 0}
+    </style>
+</head>
+<body>
+    <header class="glass-nav">
+        <div class="brand-title">Sgombero<strong>PRO</strong></div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="#">Home</a></li>
+                <li><a class="nav-link" href="#">Servizi</a></li>
+                <li><a class="nav-link" href="#">Contatti</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema">
+            <span class="material-icons">dark_mode</span>
+        </button>
+    </header>
+    
+    <main class="test-section">
+        <h1>Test Dark Mode</h1>
+        <p>Clicca sul pulsante in alto a destra per cambiare tema.</p>
+        
+        <div class="card">
+            <h2>Scheda Test</h2>
+            <p>Questa scheda dovrebbe cambiare colore insieme al resto della pagina.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Altra Scheda</h2>
+            <p>Anche questa dovrebbe adattarsi al tema.</p>
+        </div>
+    </main>
+    
+    <script>
+        function getPreferredTheme() {
+            const stored = localStorage.getItem('theme');
+            if (stored) return stored;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const btn = document.getElementById('theme-toggle');
+            const icon = btn?.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme(getPreferredTheme());
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme') || 'light';
+                applyTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        });
+    </script>
+</body>
+</html>

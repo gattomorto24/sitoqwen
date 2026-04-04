@@ -4,6 +4,7 @@
  * - Fetch async con cache
  * - Defer automatico
  * - Fallback per errori
+ * - Dark mode completa
  */
 
 // Funzione per caricare componenti HTML esterni
@@ -60,18 +61,27 @@ function initHeaderFunctions() {
         });
     }
     
-    // Dropdown menu desktop
-    const dropdowns = document.querySelectorAll('.dropdown > a');
+    // Dropdown menu desktop - fixed hover behavior
+    const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(drop => {
-        drop.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) return;
-            e.preventDefault();
-            const parent = drop.parentElement;
-            const content = parent.querySelector('.dropdown-content');
-            if (content) {
-                content.classList.toggle('active');
-            }
-        });
+        const link = drop.querySelector('a');
+        if (link && window.innerWidth > 768) {
+            // Usa CSS hover per desktop, previeni click default
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+        }
+    });
+    
+    // Mobile dropdown toggle
+    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+    mobileDropdowns.forEach(drop => {
+        const title = drop.querySelector('.mobile-dropdown-title');
+        if (title) {
+            title.addEventListener('click', () => {
+                drop.classList.toggle('active');
+            });
+        }
     });
 }
 
@@ -90,6 +100,9 @@ function applyTheme(theme) {
     const icon = btn?.querySelector('.material-icons');
     if (icon) {
         icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+    }
+    if (btn) {
+        btn.setAttribute('aria-pressed', theme === 'dark');
     }
     
     // Aggiorna logo
@@ -112,20 +125,22 @@ function updateLogoForTheme(theme) {
     if (newSrc && logo.src !== newSrc) {
         logo.style.opacity = '0';
         logo.onload = () => { logo.style.opacity = '1'; };
+        logo.onerror = () => { logo.style.opacity = '1'; }; // Fallback se immagine non esiste
         logo.src = newSrc;
     }
 }
 
 // Attiva al caricamento DOM
 document.addEventListener('DOMContentLoaded', () => {
+    // Applica tema preferito immediatamente (prima del caricamento componenti)
+    const preferredTheme = getPreferredTheme();
+    applyTheme(preferredTheme);
+    
     // Carica componenti
     Promise.all([
         loadComponent('header-placeholder', 'header-fragment.html'),
         loadComponent('footer-placeholder', 'footer-fragment.html')
     ]).then(() => {
-        // Applica tema preferito
-        applyTheme(getPreferredTheme());
-        
         // Aggiungi classe fonts-loaded quando i font sono pronti
         if (document.fonts && document.fonts.ready) {
             document.fonts.ready.then(() => {
