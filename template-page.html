@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descrizione della pagina per SEO">
+    <title>Titolo Pagina | SgomberoPRO</title>
+    
+    <!-- Preload critico per performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    
+    <!-- Critical CSS inline per evitare FOUC -->
+    <style>
+        :root{--bg-glass:rgba(255,255,255,0.7);--accent:#007bff;--text:#333;--blur-strength:12px}
+        nav{min-height:70px}
+        .glass-nav{position:sticky;top:0;z-index:1000;background:var(--bg-glass);backdrop-filter:blur(var(--blur-strength));-webkit-backdrop-filter:blur(var(--blur-strength));border-bottom:1px solid rgba(255,255,255,0.3)}
+        body{margin:0;font-family:'Inter',sans-serif;background:#f5f5f7;color:var(--text)}
+        .skip-link{position:absolute;top:-40px;left:0;background:#007bff;color:#fff;padding:8px 16px;z-index:9999;text-decoration:none}
+        .skip-link:focus{top:0}
+    </style>
+    
+    <!-- Stylesheet principale con defer -->
+    <link rel="stylesheet" href="glass-style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="glass-style.css"></noscript>
+</head>
+<body>
+    <!-- Skip link per accessibilità -->
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+    
+    <!-- Header placeholder per caricamento dinamico -->
+    <div id="header-placeholder" aria-hidden="true" data-loaded="false"></div>
+    
+    <!-- Contenuto principale -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Titolo della Pagina</h1>
+                <p class="hero-subtitle">Sottotitolo descrittivo ottimizzato SEO</p>
+            </div>
+        </section>
+        
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="container">
+                <!-- Contenuto specifico della pagina -->
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer placeholder per caricamento dinamico -->
+    <div id="footer-placeholder" aria-hidden="true" data-loaded="false"></div>
+    
+    <!-- Script caricato con defer -->
+    <script src="main.js" defer></script>
+</body>
+</html>

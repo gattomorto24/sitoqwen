@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servizio professionale di sgombero e recupero a Catania.">
+    <title>SgomberoPRO - Servizi Professionali</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    <style>:root{--bg-glass:rgba(255,255,255,0.7);--accent:#007bff;--text:#333;--blur-strength:12px}nav{min-height:70px}.glass-nav{position:sticky;top:0;z-index:1000;background:var(--bg-glass);backdrop-filter:blur(var(--blur-strength));-webkit-backdrop-filter:blur(var(--blur-strength))}body{margin:0;font-family:'Inter',sans-serif;background:#f5f5f7;color:var(--text)}.skip-link{position:absolute;top:-40px;left:0;background:#007bff;color:#fff;padding:8px 16px;z-index:9999;text-decoration:none}.skip-link:focus{top:0}</style>
+    <link rel="stylesheet" href="glass-style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="glass-style.css"></noscript>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+    <div id="header-placeholder" aria-hidden="true"></div>
+    <main id="main-content" role="main">
+        <section style="background:linear-gradient(135deg,#007bff 0%,#0056b3 100%);color:#fff;padding:4rem 5%;text-align:center;">
+            <h1 id="page-title">Servizio Professionale</h1>
+            <p style="font-size:1.25rem;opacity:0.9;margin-top:1rem;">Soluzioni rapide ed efficienti per ogni tua esigenza.</p>
+            <a href="contatti.html" class="btn-cta" style="display:inline-block;margin-top:1.5rem;background:#fff;color:#007bff;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;">Richiedi Preventivo Gratis</a>
+        </section>
+        <section style="padding:3rem 5%;max-width:1000px;margin:0 auto;">
+            <div style="background:#fff;padding:2rem;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                <h2>Il Nostro Servizio</h2>
+                <p style="color:#666;line-height:1.8;">Offriamo un servizio professionale, rapido ed economico. Il nostro team qualificato è a tua disposizione per risolvere ogni tua esigenza con la massima cura e attenzione.</p>
+                <ul style="list-style:none;padding:0;margin-top:1.5rem;">
+                    <li style="padding:0.75rem 0;display:flex;align-items:center;gap:0.75rem;"><span class="material-icons" style="color:#34c759;">check_circle</span>Preventivo gratuito e senza impegno</li>
+                    <li style="padding:0.75rem 0;display:flex;align-items:center;gap:0.75rem;"><span class="material-icons" style="color:#34c759;">check_circle</span>Intervento rapido in 24/48 ore</li>
+                    <li style="padding:0.75rem 0;display:flex;align-items:center;gap:0.75rem;"><span class="material-icons" style="color:#34c759;">check_circle</span>Personale qualificato e assicurato</li>
+                    <li style="padding:0.75rem 0;display:flex;align-items:center;gap:0.75rem;"><span class="material-icons" style="color:#34c759;">check_circle</span>Smaltimento certificato e conforme alle normative</li>
+                </ul>
+            </div>
+        </section>
+        <section style="padding:3rem 5%;text-align:center;">
+            <h2>Contattaci per un Preventivo</h2>
+            <p style="color:#666;margin:1rem 0 2rem;">Chiama ora <a href="tel:+393497500613" style="color:#007bff;text-decoration:none;font-weight:600;">+39 349 750 0613</a></p>
+            <a href="contatti.html" class="btn-cta">Richiedi Preventivo Ora</a>
+        </section>
+    </main>
+    <div id="footer-placeholder" aria-hidden="true"></div>
+    <script src="main.js" defer></script>
+    <script>
+        // Personalizza titolo pagina in base al filename
+        const path = window.location.pathname;
+        const page = path.split('/').pop().replace('.html','');
+        const titles = {
+            'sgombero-cantine': 'Sgombero Cantine e Solai',
+            'sgombero-uffici': 'Sgombero Uffici e Aziende',
+            'sgombero-garage': 'Sgombero Garage e Box',
+            'ritiro-mobili': 'Ritiro Mobili Usati con Valutazione',
+            'piccoli-traslochi': 'Piccoli Traslochi Rapidi',
+            'smaltimento-rifiuti': 'Smaltimento Rifiuti Ingombranti',
+            'pulizie-post-sgombero': 'Pulizie Post-Sgombero',
+            'faq': 'Domande Frequenti (FAQ)',
+            'recensioni': 'Recensioni dei Clienti',
+            'privacy': 'Privacy Policy',
+            'cookie-policy': 'Cookie Policy'
+        };
+        if(titles[page]) {
+            document.getElementById('page-title').textContent = titles[page];
+            document.title = titles[page] + ' | SgomberoPRO';
+        }
+    </script>
+</body>
+</html>

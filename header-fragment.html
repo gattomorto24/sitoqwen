@@ -1,0 +1,90 @@
+<!-- HEADER FRAGMENT - Solo contenuto HTML, no preload -->
+<header class="site-header glass-nav" role="banner">
+    <div class="container header-container">
+        <a href="index.html" class="logo" aria-label="SgomberoPRO - Homepage">
+            <picture>
+                <source srcset="assets/logo-dark.webp" type="image/webp">
+                <img class="logo-img" 
+                    src="assets/logo-dark.png" 
+                    alt="SgomberoPRO" 
+                    width="160" 
+                    height="40" 
+                    decoding="async" 
+                    loading="eager" 
+                    data-light-src="assets/logo-dark.png"
+                    data-dark-src="assets/logo-white.png">
+            </picture>
+        </a>
+
+        <div class="brand-title" aria-hidden="true">Sgombero<strong>PRO</strong></div>
+        
+        <nav class="nav-desktop glass-nav-links" role="navigation" aria-label="Navigazione principale">
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false" role="button">
+                        Servizi <span class="chevron">▾</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-label="Sottosezione servizi">
+                        <li><a class="nav-link" href="sgombero-appartamenti.html">Appartamenti</a></li>
+                        <li><a class="nav-link" href="sgombero-cantine.html">Cantine e Solai</a></li>
+                        <li><a class="nav-link" href="sgombero-uffici.html">Uffici e Aziende</a></li>
+                        <li><a class="nav-link" href="sgombero-garage.html">Garage e Box</a></li>
+                        <li><a class="nav-link" href="ritiro-mobili.html">Ritiro Mobili Usati</a></li>
+                        <li><a class="nav-link" href="piccoli-traslochi.html">Piccoli Traslochi</a></li>
+                        <li><a class="nav-link" href="smaltimento-rifiuti.html">Smaltimento Ingombranti</a></li>
+                        <li><a class="nav-link" href="pulizie-post-sgombero.html">Pulizie Post-Sgombero</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="dove-operiamo.html">Dove Operiamo</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="recensioni.html">Recensioni</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions" role="group" aria-label="Azioni intestazione">
+            <button id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Cambia tema">
+                <span class="material-icons" aria-hidden="true">dark_mode</span>
+            </button>
+            <a class="header-cta btn-cta" href="contatti.html" aria-label="Preventivo Gratis">
+                <span class="material-icons" aria-hidden="true">request_quote</span>
+                <span class="cta-text">Preventivo Gratis</span>
+            </a>
+            <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Apri menu">
+                <span class="material-icons" aria-hidden="true">menu</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="false">
+        <nav role="navigation" aria-label="Menu mobile">
+            <ul class="mobile-menu-list">
+                <li><a href="index.html">Home</a></li>
+                <li class="mobile-dropdown">
+                    <span class="mobile-dropdown-title">Servizi ▾</span>
+                    <ul class="mobile-dropdown-content">
+                        <li><a href="sgombero-appartamenti.html">Appartamenti</a></li>
+                        <li><a href="sgombero-cantine.html">Cantine e Solai</a></li>
+                        <li><a href="sgombero-uffici.html">Uffici e Aziende</a></li>
+                        <li><a href="sgombero-garage.html">Garage e Box</a></li>
+                        <li><a href="ritiro-mobili.html">Ritiro Mobili</a></li>
+                        <li><a href="piccoli-traslochi.html">Piccoli Traslochi</a></li>
+                        <li><a href="smaltimento-rifiuti.html">Smaltimento Ingombranti</a></li>
+                        <li><a href="pulizie-post-sgombero.html">Pulizie Post-Sgombero</a></li>
+                    </ul>
+                </li>
+                <li><a href="dove-operiamo.html">Dove Operiamo</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="recensioni.html">Recensioni</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+                <li class="mobile-cta-wrapper">
+                    <a href="contatti.html" class="mobile-cta-btn">Preventivo Gratis</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

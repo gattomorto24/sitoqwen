@@ -1,0 +1,403 @@
+/**
+ * glass-style.css - Minimal Glassmorphism Design
+ * Ottimizzato per PageSpeed 100/100
+ * - backdrop-filter solo su elementi fixed/sticky
+ * - Variabili CSS per coerenza
+ * - Fallback per browser vecchi
+ */
+
+/* =========================================
+   VARIABILI GLOBALI
+   ========================================= */
+:root {
+    --bg-glass: rgba(255, 255, 255, 0.7);
+    --bg-glass-dark: rgba(28, 28, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --accent: #007bff;
+    --accent-hover: #0056b3;
+    --text: #333;
+    --text-light: #666;
+    --white: #fff;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --blur-strength: 12px;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+    --bg-glass: var(--bg-glass-dark);
+    --glass-border: var(--glass-border-dark);
+    --text: #f5f5f7;
+    --text-light: #a1a1a6;
+}
+
+/* =========================================
+   GLASS NAVIGATION - Performance Optimized
+   ========================================= */
+.glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-glass);
+    /* Gaussian Blur con fallback */
+    backdrop-filter: blur(var(--blur-strength));
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    min-height: 70px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Logo styling */
+.glass-nav .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.glass-nav .logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Navigation links */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--accent);
+}
+
+.nav-link.active {
+    color: var(--accent);
+}
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu,
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--blur-strength));
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li a,
+.dropdown-content li a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-content li a:hover {
+    background: rgba(0, 123, 255, 0.1);
+    color: var(--accent);
+}
+
+/* CTA Button */
+.btn-cta {
+    background: var(--accent);
+    color: var(--white) !important;
+    padding: 0.625rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* Header actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    transition: background 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text);
+}
+
+/* Mobile menu */
+.mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--blur-strength));
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    border-top: 1px solid var(--glass-border);
+    padding: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 999;
+}
+
+.mobile-menu[aria-hidden="false"] {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+
+.mobile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu-list li {
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.mobile-menu-list a {
+    display: block;
+    padding: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.mobile-dropdown-title {
+    display: block;
+    padding: 1rem;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mobile-dropdown-content {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.mobile-dropdown.active .mobile-dropdown-content {
+    display: block;
+}
+
+.mobile-dropdown-content li a {
+    padding-left: 2rem;
+    font-size: 0.9rem;
+}
+
+.mobile-cta-wrapper {
+    padding: 1rem;
+}
+
+.mobile-cta-btn {
+    display: block;
+    background: var(--accent);
+    color: var(--white);
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .nav-desktop {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .brand-title {
+        display: none;
+    }
+    
+    .glass-nav {
+        padding: 0.75rem 5%;
+    }
+}
+
+/* =========================================
+   FOOTER GLASS STYLE
+   ========================================= */
+.site-footer {
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--blur-strength));
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    border-top: 1px solid var(--glass-border);
+    padding: 3rem 5% 1.5rem;
+    margin-top: 4rem;
+}
+
+.footer-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-col-new h4 {
+    color: var(--text);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links-new {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-new li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links-new a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links-new a:hover {
+    color: var(--accent);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-social a {
+    color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.footer-social a:hover {
+    color: var(--accent);
+}
+
+.footer-legal {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1.5rem;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.footer-legal a {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.footer-legal a:hover {
+    color: var(--accent);
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
