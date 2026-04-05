@@ -43,24 +43,10 @@
                     <ul class="dropdown-menu" aria-label="Sottosezione servizi">
                         <li><a class="nav-link" href="sgombero-appartamenti.html">Sgombero Appartamenti</a></li>
                         <li><a class="nav-link" href="sgombero-cantine-garage.html">Sgombero Cantine e Garage</a></li>
-                        <li><a class="nav-link" href="sgombero-uffici.html">Sgombero Uffici e Locali Commerciali</a></li>
-                        <li><a class="nav-link" href="traslochi-completi.html">Traslochi Completi</a></li>
-                        <li><a class="nav-link" href="acquisto-mobili-usati.html">Acquisto Mobili Usati</a></li>
-                        <li><a class="nav-link" href="sgombero-capannoni-soffitte.html">Sgombero Capannoni e Soffitte</a></li>
-                        <li><a class="nav-link" href="smaltimento-eco-sostenibile.html">Smaltimento Eco-Sostenibile</a></li>
+                        <li><a class="nav-link" href="smaltimento-mobili.html">Smaltimento Mobili</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="chi-siamo.html">Chi Siamo</a></li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false" role="button">Dove Operiamo <span class="chevron">▾</span></a>
-                    <ul class="dropdown-menu" aria-label="Aree coperte">
-                        <li><a class="nav-link" href="sgombero-catania.html">Catania</a></li>
-                        <li><a class="nav-link" href="sgombero-acireale.html">Acireale</a></li>
-                        <li><a class="nav-link" href="sgombero-misterbianco.html">Misterbianco</a></li>
-                        <li><a class="nav-link" href="sgombero-paterno.html">Paternò</a></li>
-                        <li><a class="nav-link" href="sgombero-gravina.html">Gravina di Catania</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
             </ul>
         </nav>
@@ -74,11 +60,30 @@
                 <span class="material-icons" aria-hidden="true">request_quote</span>
                 <span class="cta-text">Preventivo Rapido</span>
             </a>
-            <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu-overlay" aria-label="Apri menu">
+            <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Apri menu">
                 <span class="material-icons" aria-hidden="true">menu</span>
             </button>
         </div>
     </div>
 
-    <!-- Mobile menu overlay is generated dynamically and inserted outside #page-content -->
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="false">
+        <nav role="navigation" aria-label="Menu mobile">
+            <ul class="mobile-menu-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="servizi.html">Servizi</a></li>
+                <li><a href="dove-operiamo.html">Dove Operiamo</a></li>
+                <li><a href="acquisto-mobili.html">Acquisto Mobili</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+                <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <!-- CTA Extra nel menu mobile -->
+                <li style="margin-top: 30px;">
+                       <a href="popup.html"  display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <span class="material-icons">chat</span> Scrivici su WhatsApp
+                   </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </header>

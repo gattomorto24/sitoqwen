@@ -159,11 +159,9 @@ function initUI() {
 }
 
 function initHeader() {
-    // header può essere iniettato in vari placeholder o presente direttamente
-    let header = document.querySelector('#main-header > header')
-              || document.querySelector('#header-placeholder .glass-nav')
-              || document.querySelector('.glass-nav')
-              || document.querySelector('header');
+    // header può essere iniettato in #main-header o presente direttamente
+    let header = document.querySelector('#main-header > header');
+    if (!header) header = document.querySelector('header');
     if (!header) {
         console.warn('Header non trovato durante initHeader');
         return;
@@ -171,7 +169,6 @@ function initHeader() {
 
     const hamburger = header.querySelector('#hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileClose = document.getElementById('mobile-close');
     const desktopNav = header.querySelector('.nav-desktop');
 
     // Active link highlighting
@@ -213,9 +210,9 @@ function initHeader() {
         const openMenu = () => {
             lastFocusedElement = document.activeElement;
             hamburger.setAttribute('aria-expanded', 'true');
-            if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'false');
-            if (mobileMenu) mobileMenu.setAttribute('aria-modal', 'true');
-            if (mobileMenu) mobileMenu.setAttribute('role', 'dialog');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            mobileMenu.setAttribute('aria-modal', 'true');
+            mobileMenu.setAttribute('role', 'dialog');
             setMenuFocusable(true);
             const firstFocusable = mobileMenu.querySelectorAll(focusableSelector)[0];
             firstFocusable?.focus();
@@ -227,8 +224,8 @@ function initHeader() {
 
         const closeMenu = () => {
             hamburger.setAttribute('aria-expanded', 'false');
-            if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
-            if (mobileMenu) mobileMenu.setAttribute('aria-modal', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            mobileMenu.setAttribute('aria-modal', 'false');
             setMenuFocusable(false);
             document.body.style.overflow = '';
             try { lastFocusedElement?.focus(); } catch (e) {}
@@ -243,14 +240,6 @@ function initHeader() {
         hamburger.addEventListener('click', () => {
             const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
             if (isOpen) closeMenu(); else openMenu();
-        });
-
-        if (mobileClose) mobileClose.addEventListener('click', () => closeMenu());
-
-        // support click on overlay area to close (if click outside inner)
-        if (mobileMenu) mobileMenu.addEventListener('click', (e) => {
-            const inner = mobileMenu.querySelector('.mobile-menu-inner');
-            if (inner && !inner.contains(e.target)) closeMenu();
         });
 
         // Close on outside click or Escape
