@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Escludi file di componenti che non devono apparire nei risultati di ricerca
+Disallow: /header.html
+Disallow: /footer.html
+Disallow: /popup.html
+
+# Indica a Google dove si trova la sitemap
+Sitemap: https://sgombero-catania.it/sitemap.xml
