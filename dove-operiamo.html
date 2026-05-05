@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dove Operiamo - STR Trasporti</title>
+  <meta name="description" content="Sgomberi e traslochi in tutti i comuni della provincia di Catania. Servizio professionale, preventivi gratuiti, eco-sostenibilità e acquisto mobili. Lista completa comuni coperti.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Animazioni, card, lista dinamica, effetti curati -->
+  
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      // Animazione dinamica lista
+      const items = document.querySelectorAll('.coverage-list li');
+      items.forEach((el,i)=>{
+        setTimeout(()=>{
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0) scale(1)';
+        }, 60*i);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="main-header" class="header-placeholder" aria-hidden="true"></div>
+  <main id="main-content" class="page-coverage">
+    <section class="section-title section-title--center">
+      <span class="eyebrow">Zona di Copertura</span>
+      <h1>Dove Operiamo</h1>
+      <p>STR Trasporti copre tutta la provincia di Catania con servizi di sgombero, trasloco e acquisto mobili. Siamo veloci, professionali e attenti all'ambiente.</p>
+      <div class="cta-stack">
+        <a href="https://www.sgomberocatania.it" class="cta-button" target="_blank" rel="noopener">Visita il sito principale</a>
+        <a href="contatti.html" class="cta-button whatsapp-btn">Contattaci subito</a>
+      </div>
+    </section>
+
+    <section class="coverage">
+      <div class="coverage-container">
+        <div class="coverage-title">
+          <h3>I nostri comuni</h3>
+          <p>Dal centro di Catania ai comuni dell'Etna, la nostra copertura è ampia e pronta a soddisfare ogni esigenza di trasloco o sgombero.</p>
+        </div>
+
+        <ul class="coverage-list">
+          <li>Catania</li>
+          <li>Acireale</li>
+          <li>Misterbianco</li>
+          <li>Paternò</li>
+          <li>Belpasso</li>
+          <li>Gravina di Catania</li>
+          <li>Mascalucia</li>
+          <li>San Giovanni La Punta</li>
+          <li>Tremestieri Etneo</li>
+          <li>Aci Castello</li>
+          <li>Caltagirone</li>
+          <li>Adrano</li>
+          <li>Biancavilla</li>
+          <li>Riposto</li>
+          <li>Giarre</li>
+          <li>Palagonia</li>
+          <li>Randazzo</li>
+          <li>Bronte</li>
+          <li>Santa Maria di Licodia</li>
+          <li>San Pietro Clarenza</li>
+          <li>Pedara</li>
+          <li>Trecastagni</li>
+          <li>San Gregorio di Catania</li>
+          <li>Valverde</li>
+          <li>Viagrande</li>
+          <li>Fiumefreddo di Sicilia</li>
+          <li>Calatabiano</li>
+          <li>Castiglione di Sicilia</li>
+          <li>Maletto</li>
+          <li>Santa Venerina</li>
+          <li>Camporotondo Etneo</li>
+          <li>Motta Sant'Anastasia</li>
+          <li>Licodia Eubea</li>
+          <li>Mineo</li>
+          <li>Vizzini</li>
+          <li>Scordia</li>
+          <li>Linguaglossa</li>
+          <li>Mirabella Imbaccari</li>
+          <li>Ramacca</li>
+          <li>Castel di Iudica</li>
+          <li>Raddusa</li>
+        </ul>
+
+        <p class="coverage-note">Se non trovi il tuo comune in lista, scrivici comunque: copriamo tutta la provincia e adattiamo il servizio alle tue esigenze.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="coverage-container">
+        <div class="coverage-feature-grid">
+          <article class="coverage-feature">
+            <span class="material-icons" aria-hidden="true">local_shipping</span>
+            <h3>Traslochi su misura</h3>
+            <p>Mezzi dedicati, imballaggio curato e tempi rapidi per trasferimenti senza stress.</p>
+          </article>
+          <article class="coverage-feature">
+            <span class="material-icons" aria-hidden="true">restore</span>
+            <h3>Sgomberi rapidi</h3>
+            <p>Ritiriamo mobili e materiali con soluzioni flessibili, anche in giornata quando possibile.</p>
+          </article>
+          <article class="coverage-feature">
+            <span class="material-icons" aria-hidden="true">payments</span>
+            <h3>Acquisto mobili</h3>
+            <p>Paghiamo subito per mobili usati selezionati, con ritiro a domicilio e valutazione trasparente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="main-footer"></div>
+  <div id="popup-widget"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>
