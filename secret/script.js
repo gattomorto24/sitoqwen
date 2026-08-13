@@ -370,21 +370,24 @@ function initGlobalBehaviors() {
         });
     }
 
-    // Inquiry form
+    // Inquiry form: inoltra la richiesta a WhatsApp, senza fingere un invio server.
     const inquiryForm = document.getElementById('inquiry-form');
     if (inquiryForm) {
         inquiryForm.addEventListener('submit', e => {
             e.preventDefault();
-            const name = document.getElementById('name') ? document.getElementById('name').value : '';
-            // Ideally this would call un API; keep friendly UX now
-            const msg = document.createElement('div');
-            msg.className = 'form-feedback';
-            msg.setAttribute('role', 'status');
-            msg.setAttribute('aria-live', 'polite');
-            msg.textContent = `Grazie ${name || 'Cliente'} per averci contattato! Ti risponderemo al più presto.`;
-            inquiryForm.appendChild(msg);
-            setTimeout(() => { msg.remove(); }, 3500);
-            inquiryForm.reset();
+            const name = document.getElementById('name')?.value.trim() || '';
+            const phone = document.getElementById('phone')?.value.trim() || '';
+            const serviceField = document.getElementById('service');
+            const service = serviceField?.options[serviceField.selectedIndex]?.text || '';
+            const message = document.getElementById('message')?.value.trim() || '';
+            const lines = [
+                'Richiesta dal sito storico STR Sgomberi',
+                `Nome: ${name}`,
+                `Telefono: ${phone}`,
+                service && service !== 'Seleziona un servizio' ? `Servizio: ${service}` : '',
+                message ? `Messaggio: ${message}` : ''
+            ].filter(Boolean);
+            window.location.href = `https://wa.me/393497500613?text=${encodeURIComponent(lines.join('\n'))}`;
         });
     }
 

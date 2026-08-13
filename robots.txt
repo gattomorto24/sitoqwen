@@ -5,6 +5,9 @@ Allow: /
 Disallow: /header.html
 Disallow: /footer.html
 Disallow: /popup.html
+Disallow: /secret/header.html
+Disallow: /secret/footer.html
+Disallow: /secret/popup.html
 
 # Indica a Google dove si trova la sitemap
 Sitemap: https://sgombero-catania.it/sitemap.xml
