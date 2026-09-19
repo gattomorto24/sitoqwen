@@ -1,56 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-    <url>
-        <loc>https://sgombero-catania.it/index.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.00</priority>
-    </url>
-
-    <url>
-        <loc>https://sgombero-catania.it/servizi.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.90</priority>
-    </url>
-
-    <url>
-        <loc>https://sgombero-catania.it/acquisto-mobili.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <url>
-        <loc>https://sgombero-catania.it/chi-siamo.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-
-    <url>
-        <loc>https://sgombero-catania.it/dove-operiamo.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.80</priority>
-    </url>
-
-    <url>
-        <loc>https://sgombero-catania.it/blog.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.80</priority>
-    </url>
-
-    <url>
-        <loc>https://sgombero-catania.it/contatti.html</loc>
-        <lastmod>2026-02-07</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.75</priority>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://sgombero-catania.it/</loc></url>
+  <url><loc>https://sgombero-catania.it/servizi/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-case-appartamenti/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-cantine-solai/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-garage-box/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-mobili/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-uffici-studi/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-negozi-locali-commerciali/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-magazzini-capannoni/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-case-ereditate/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-per-vendita-o-trasloco/</loc></url>
+  <url><loc>https://sgombero-catania.it/sgombero-gratuito-catania/</loc></url>
+  <url><loc>https://sgombero-catania.it/quanto-costa-sgombero-catania/</loc></url>
+  <url><loc>https://sgombero-catania.it/come-funziona/</loc></url>
+  <url><loc>https://sgombero-catania.it/zone-servite/</loc></url>
+  <url><loc>https://sgombero-catania.it/chi-siamo/</loc></url>
+  <url><loc>https://sgombero-catania.it/contatti/</loc></url>
 </urlset>
